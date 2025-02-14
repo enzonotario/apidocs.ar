@@ -1,0 +1,7 @@
+.VPDoc .content {
+    max-width: none !important;
+}
+
+.VPDoc .content .content-container {
+    max-width: none !important;
+}

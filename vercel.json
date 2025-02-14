@@ -1,0 +1,16 @@
+{
+  "outputDirectory": "docs/.vitepress/dist",
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/about(.html)?",
+      "has": [
+        {
+          "type": "host",
+          "value": "bcra.apidocs.ar"
+        }
+      ],
+      "destination": "/introduction.html"
+    }
+  ]
+}
