@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview",
+    "start": "vitepress dev"
+  },
+  "devDependencies": {
+    "vitepress": "latest",
+    "vitepress-openapi": "latest"
+  }
+}

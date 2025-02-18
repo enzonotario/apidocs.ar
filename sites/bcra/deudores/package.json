@@ -1,0 +1,8 @@
+{
+  "private": true,
+  "type": "module",
+  "devDependencies": {
+    "vitepress": "latest",
+    "vitepress-openapi": "latest"
+  }
+}
