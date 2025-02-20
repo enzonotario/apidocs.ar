@@ -5,3 +5,7 @@
 .VPDoc .content .content-container {
     max-width: none !important;
 }
+
+.VPDoc .container {
+    max-width: 1400px !important;
+}

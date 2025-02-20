@@ -1,4 +1,8 @@
+import { removeLetterFromVersion } from './utils/removeLetterFromVersion.ts'
+
 export function transform(spec) {
+  spec.info.version = removeLetterFromVersion(spec.info.version)
+
   Object.entries(spec.paths).forEach(([path, methods]) => {
     if (path === '/centraldedeudores/v1.0/Deudas/{Identificacion}') {
       if (methods.get) {

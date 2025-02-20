@@ -7,7 +7,7 @@
       "name": "API BCRA Consultas Técnicas",
       "email": "Api@bcra.gob.ar"
     },
-    "version": "v1.0"
+    "version": "1.0"
   },
   "servers": [
     {

@@ -1,24 +1,7 @@
+import type { Site } from './sites.ts'
 import { dirname, join } from 'node:path'
-import { fileURLToPath } from 'node:url'
 import fs from 'fs-extra'
-
-interface Site {
-  name: string
-  description: string
-  subdomain: string
-  baseDir: string
-  specUrl?: string
-}
-
-const sites: Site[] = [
-  {
-    name: 'Deudores BCRA',
-    description: 'Central de Deudores del BCRA',
-    subdomain: 'deudores.bcra',
-    baseDir: '/sites/bcra/deudores',
-    specUrl: fileURLToPath(new URL('../assets/deudores.bcra.openapi.json', import.meta.url)),
-  },
-]
+import { sites } from './sites.ts'
 
 export async function main(): Promise<number> {
   for (const site of sites) {
@@ -29,6 +12,8 @@ export async function main(): Promise<number> {
     await createSpec(site)
     await transformSpec(site)
   }
+
+  await transformList(sites)
 
   return 0
 }
@@ -91,4 +76,36 @@ async function transformSpec(site: Site) {
 
     await fs.writeJson(specPath, newSpec, { spaces: 2 })
   }
+}
+
+async function transformList(sites: Site[]) {
+  // write sites as MarkdownTable in `lista.md`
+
+  const sitesGroupedByTag: any[] = sites.reduce((acc, site) => {
+    site.tags.forEach((tag) => {
+      if (!acc[tag]) {
+        acc[tag] = []
+      }
+
+      acc[tag].push(site)
+    })
+
+    return acc
+  }, {})
+
+  const listPath = join(__dirname, '..', 'docs', 'lista.md')
+
+  const newContent = `# apidocs.ar
+  
+Lista de documentaciones de APIs públicas.
+
+${Object.entries(sitesGroupedByTag).map(([tag, sites]) => {
+  return `## ${tag}
+
+${sites.map((site) => {
+  return `- [${site.description}](https://${site.subdomain}.apidocs.ar)`
+}).join('\n')}`
+})}`
+
+  await fs.writeFile(listPath, newContent)
 }

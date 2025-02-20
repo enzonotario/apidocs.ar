@@ -1,0 +1,327 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Cheques",
+    "description": "Podrás consultar cheques denunciados, extraviados, sustraídos o adulterados. La información disponible aquí es suministrada por las entidades financieras que operan en el país y se publica sin alteraciones.",
+    "contact": {
+      "name": "API BCRA Consultas Técnicas",
+      "email": "api@bcra.gob.ar"
+    },
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.bcra.gob.ar"
+    }
+  ],
+  "paths": {
+    "/cheques/v1.0/entidades": {
+      "get": {
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntidadResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntidadResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntidadResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChequeResponseError"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChequeResponseError"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChequeResponseError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntidadResponseError"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntidadResponseError"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntidadResponseError"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Listado de entidades",
+        "description": "Listado de entidades que operan con cheques"
+      }
+    },
+    "/cheques/v1.0/denunciados/{codigoEntidad}/{numeroCheque}": {
+      "get": {
+        "tags": [],
+        "parameters": [
+          {
+            "name": "codigoEntidad",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "description": "Código de entidad. Valores posibles: \n| Código | Denominación |\n| ------ | ------------ |\n| 297 | BANCO BANEX S.A. |\n| 17 | BANCO BBVA ARGENTINA S.A. |\n| 426 | BANCO BICA S.A. |\n| 259 | BANCO BMA S.A.U. |\n| 336 | BANCO BRADESCO ARGENTINA S.A.U. |\n| 319 | BANCO CMF S.A. |\n| 431 | BANCO COINAG S.A. |\n| 389 | BANCO COLUMBIA S.A. |\n| 299 | BANCO COMAFI SOCIEDAD ANONIMA |\n| 191 | BANCO CREDICOOP COOPERATIVO LIMITADO |\n| 432 | BANCO DE COMERCIO S.A. |\n| 94 | BANCO DE CORRIENTES S.A. |\n| 315 | BANCO DE FORMOSA S.A. |\n| 7 | BANCO DE GALICIA Y BUENOS AIRES S.A.U. |\n| 29 | BANCO DE LA CIUDAD DE BUENOS AIRES |\n| 11 | BANCO DE LA NACION ARGENTINA |\n| 93 | BANCO DE LA PAMPA S.E.M. |\n| 14 | BANCO DE LA PROVINCIA DE BUENOS AIRES |\n| 20 | BANCO DE LA PROVINCIA DE CORDOBA S.A. |\n| 45 | BANCO DE SAN JUAN S.A. |\n| 86 | BANCO DE SANTA CRUZ S.A. |\n| 321 | BANCO DE SANTIAGO DEL ESTERO S.A. |\n| 338 | BANCO DE SERVICIOS Y TRANSACCIONES S.A. |\n| 198 | BANCO DE VALORES S.A. |\n| 83 | BANCO DEL CHUBUT S.A. |\n| 310 | BANCO DEL SOL S.A. |\n| 60 | BANCO DEL TUCUMAN S.A. |\n| 448 | BANCO DINO S.A. |\n| 303 | BANCO FINANSUR S.A. |\n| 150 | Banco GGAL SA |\n| 44 | BANCO HIPOTECARIO S.A. |\n| 322 | BANCO INDUSTRIAL |\n| 305 | BANCO JULIO SOCIEDAD ANONIMA |\n| 285 | BANCO MACRO S.A. |\n| 254 | BANCO MARIVA S.A. |\n| 341 | BANCO MASVENTAS S.A. |\n| 281 | BANCO MERIDIAN S.A. |\n| 65 | BANCO MUNICIPAL DE ROSARIO |\n| 34 | BANCO PATAGONIA  S.A. |\n| 301 | BANCO PIANO S.A. |\n| 306 | BANCO PRIVADO DE INVERSIONES S.A. |\n| 268 | BANCO PROVINCIA DE TIERRA DEL FUEGO |\n| 97 | BANCO PROVINCIA DEL NEUQUEN S.A. |\n| 79 | BANCO REGIONAL DE CUYO S.A. |\n| 309 | BANCO RIOJA SOCIEDAD ANÓNIMA UNIPERSONAL |\n| 247 | BANCO ROELA S.A. |\n| 277 | BANCO SAENZ S.A. |\n| 72 | BANCO SANTANDER ARGENTINA S.A. |\n| 435 | BANCO SUCREDITO REGIONAL S.A.U. |\n| 27 | BANCO SUPERVIELLE S.A. |\n| 147 | BIBANK S.A. |\n| 266 | BNP PARIBAS |\n| 16 | CITIBANK N.A. |\n| 15 | INDUSTRIAL AND COMMERCIAL BANK OF CHINA |\n| 18 | MUFG BANK, LTD |\n| 386 | NUEVO BANCO DE ENTRE RÍOS S.A. |\n| 330 | NUEVO BANCO DE SANTA FE SOCIEDAD ANONIMA |\n| 311 | NUEVO BANCO DEL CHACO S. A. |\n| 5 | The Royal Bank of Scotland N.V. |\n    "
+          },
+          {
+            "name": "numeroCheque",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChequeResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChequeResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChequeResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChequeResponseError"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChequeResponseError"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChequeResponseError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChequeResponseError"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChequeResponseError"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChequeResponseError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChequeResponseError"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChequeResponseError"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChequeResponseError"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Consulta de cheque denunciado",
+        "description": "Consulta de cheque denunciado por entidad y número de cheque"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Cheque": {
+        "type": "object",
+        "properties": {
+          "numeroCheque": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "denunciado": {
+            "type": "boolean"
+          },
+          "fechaProcesamiento": {
+            "type": "string",
+            "format": "date",
+            "example": "2024-08-07"
+          },
+          "denominacionEntidad": {
+            "type": "string",
+            "nullable": true
+          },
+          "detalles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ChequeDetalle"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ChequeDetalle": {
+        "type": "object",
+        "properties": {
+          "sucursal": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "numeroCuenta": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "causal": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ChequeResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "results": {
+            "$ref": "#/components/schemas/Cheque"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ChequeResponseError": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "errorMessages": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Entidad": {
+        "type": "object",
+        "properties": {
+          "codigoEntidad": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "denominacion": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EntidadResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Entidad"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EntidadResponseError": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "errorMessages": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
