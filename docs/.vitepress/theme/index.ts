@@ -1,5 +1,5 @@
-import DefaultTheme from 'vitepress/theme';
-import type { Theme } from 'vitepress';
+import type { Theme } from 'vitepress'
+import DefaultTheme from 'vitepress/theme'
 
 // import { theme } from 'vitepress-openapi/client';
 // import 'vitepress-openapi/dist/style.css';
@@ -10,4 +10,4 @@ export default {
   // async enhanceApp({ app, router, siteData }) {
   //   theme.enhanceApp({ app });
   // },
-} satisfies Theme;
+} satisfies Theme

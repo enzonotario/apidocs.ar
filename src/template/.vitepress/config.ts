@@ -4,8 +4,8 @@ const gaId = process.env.NODE_ENV === 'production' ? 'G-4RPLQ59LN8' : 'G-TEST'
 
 export default defineConfig({
   lang: 'es-AR',
-  title: 'apidocs.ar',
-  description: 'Documentación de APIs',
+  title: '{{domain}}',
+  description: '{{description}}',
   themeConfig: {
     socialLinks: [
       { icon: 'github', link: 'https://github.com/enzonotario/apidocs.ar' },

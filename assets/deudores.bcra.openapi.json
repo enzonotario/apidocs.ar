@@ -113,9 +113,7 @@
               }
             }
           }
-        },
-        "summary": "Deudas por Identificación",
-        "description": "Obtener deudas de una persona por Identificación"
+        }
       }
     },
     "/centraldedeudores/v1.0/Deudas/Historicas/{Identificacion}": {
@@ -215,9 +213,7 @@
               }
             }
           }
-        },
-        "summary": "Deudas históricas por Identificación",
-        "description": "Obtener deudas históricas de una persona por Identificación"
+        }
       }
     },
     "/centraldedeudores/v1.0/Deudas/ChequesRechazados/{Identificacion}": {
@@ -317,9 +313,7 @@
               }
             }
           }
-        },
-        "summary": "Cheques rechazados por Identificación",
-        "description": "Obtener cheques rechazados de una persona por Identificación"
+        }
       }
     }
   },

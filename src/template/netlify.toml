@@ -1,4 +1,4 @@
 [build]
-base = "/docs"
+base = "{{baseDir}}"
 publish = ".vitepress/dist"
 command = "npx vitepress build"

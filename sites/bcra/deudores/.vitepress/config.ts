@@ -1,11 +1,11 @@
-import { defineConfig } from 'vitepress';
+import { defineConfig } from 'vitepress'
 
 const gaId = process.env.NODE_ENV === 'production' ? 'G-4RPLQ59LN8' : 'G-TEST'
 
 export default defineConfig({
   lang: 'es-AR',
-  title: 'deudores.bcra.apidocs.ar',
-  description: 'Deudores BCRA API Docs',
+  title: 'Deudores BCRA',
+  description: 'Central de Deudores del BCRA',
   themeConfig: {
     socialLinks: [
       { icon: 'github', link: 'https://github.com/enzonotario/apidocs.ar' },
@@ -17,13 +17,13 @@ export default defineConfig({
   },
   head: [
     // ['link', {rel: 'icon', type: 'image/png', href: '/logo.png'}],
-    ['meta', {name: 'og:type', content: 'website'}],
-    ['meta', {name: 'og:locale', content: 'es'}],
-    ['meta', {name: 'og:site_name', content: 'apidocs.ar'}],
-    ['meta', {name: 'og:image', content: 'https://apidocs.ar/og.png'}],
-    ['meta', {name: 'twitter:card', content: 'summary'}],
-    ['meta', {name: 'twitter:title', content: 'apidocs.ar'}],
-    ['meta', {name: 'twitter:description', content: 'Documentación de APIs'}],
+    ['meta', { name: 'og:type', content: 'website' }],
+    ['meta', { name: 'og:locale', content: 'es' }],
+    ['meta', { name: 'og:site_name', content: 'apidocs.ar' }],
+    ['meta', { name: 'og:image', content: 'https://apidocs.ar/og.png' }],
+    ['meta', { name: 'twitter:card', content: 'summary' }],
+    ['meta', { name: 'twitter:title', content: 'apidocs.ar' }],
+    ['meta', { name: 'twitter:description', content: 'Documentación de APIs' }],
 
     // Google Analytics.
     [
@@ -39,4 +39,4 @@ export default defineConfig({
       gtag('config', '${gaId}');`,
     ],
   ],
-});
+})

@@ -1,4 +1,4 @@
 [build]
-	base = "/sites/bcra/deudores"
-	publish = ".vitepress/dist"
-	command = "npx vitepress build"
+base = "/sites/bcra/deudores"
+publish = ".vitepress/dist"
+command = "npx vitepress build"
