@@ -1,0 +1,830 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "API de Trenes SOFSE",
+    "description": "Este proyecto tiene como objetivo permitir el acceso público a la API de Trenes de SOFSE, eludiendo la seguridad basada en la ocultación de su API interna.\n\nTodos los endpoints y parámetros son los mismos que los del servicio original; esto es solo un proxy que hace que el proceso de autenticación sea accesible para el uso público.\n\nEsto fue posible gracias al análisis y extracción del código dentro de la aplicación Android de Trenes SOFSE.\n\n[Aquí hay una publicación en el blog](https://ariedro.dev/3-hack-trains-api/) que describe cuál fue el proceso detrás de esto.\n\n- Repositorio: [https://github.com/ariedro/api-trenes](https://github.com/ariedro/api-trenes)\n",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Ariel Aguirre @ariedro",
+      "url": "https://ariedro.dev/contact/"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://ariedro.dev/api-trenes",
+      "description": "Instancia pública"
+    }
+  ],
+  "paths": {
+    "/lineas": {
+      "get": {
+        "summary": "Obtener todas las líneas de tren",
+        "description": "Recupera información sobre todas las líneas de tren",
+        "parameters": [
+          {
+            "name": "ids",
+            "in": "query",
+            "description": "Filtrar por IDs específicos",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "style": "form",
+            "explode": true
+          },
+          {
+            "name": "lineas",
+            "in": "query",
+            "description": "Filtrar por números de línea específicos",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "style": "form",
+            "explode": true
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Número máximo de resultados a devolver",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Campos a incluir en la respuesta",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de líneas de tren",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Linea"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/estaciones/{id}": {
+      "get": {
+        "summary": "Obtener información de la estación",
+        "description": "Recupera información sobre una estación específica",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID de la estación",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Información de la estación",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Estacion"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Estación no encontrada"
+          }
+        }
+      }
+    },
+    "/estaciones/{id}/horarios": {
+      "get": {
+        "summary": "Obtener horarios de trenes",
+        "description": "Recupera horarios de trenes desde una estación específica hacia otra",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID de la estación de origen",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "hasta",
+            "in": "query",
+            "description": "ID de la estación de destino",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Campos a incluir en la respuesta",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "lineas",
+            "in": "query",
+            "description": "Filtrar por números de línea específicos",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "style": "form",
+            "explode": true
+          },
+          {
+            "name": "ramales",
+            "in": "query",
+            "description": "Filtrar por números de ramal específicos",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "style": "form",
+            "explode": true
+          },
+          {
+            "name": "cabeceraFinal",
+            "in": "query",
+            "description": "Filtrar por IDs de destino final",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "style": "form",
+            "explode": true
+          },
+          {
+            "name": "servicio",
+            "in": "query",
+            "description": "Tipo de servicio",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "fecha",
+            "in": "query",
+            "description": "Fecha para el horario",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "tipo",
+            "in": "query",
+            "description": "Tipo de horario",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Número máximo de resultados a devolver",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Horarios de trenes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Horarios"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Estación no encontrada"
+          }
+        }
+      }
+    },
+    "/estaciones/{id}/horarios/groups": {
+      "get": {
+        "summary": "Obtener horarios de trenes agrupados",
+        "description": "Recupera horarios de trenes agrupados desde una estación específica",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID de la estación",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Campos a incluir en la respuesta",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "lineas",
+            "in": "query",
+            "description": "Filtrar por números de línea específicos",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "style": "form",
+            "explode": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Horarios de trenes agrupados",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HorariosGroups"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Estación no encontrada"
+          }
+        }
+      }
+    },
+    "/estaciones/cercanas": {
+      "get": {
+        "summary": "Obtener estaciones cercanas",
+        "description": "Recupera estaciones cercanas a una ubicación geográfica",
+        "parameters": [
+          {
+            "name": "lat",
+            "in": "query",
+            "description": "Coordenada de latitud",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "lon",
+            "in": "query",
+            "description": "Coordenada de longitud",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "radio",
+            "in": "query",
+            "description": "Radio de búsqueda en metros",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Número máximo de resultados a devolver",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "lineas",
+            "in": "query",
+            "description": "Filtrar por números de línea específicos",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "style": "form",
+            "explode": true
+          },
+          {
+            "name": "ramales",
+            "in": "query",
+            "description": "Filtrar por números de ramal específicos",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "style": "form",
+            "explode": true
+          },
+          {
+            "name": "exclude",
+            "in": "query",
+            "description": "IDs de estaciones a excluir",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "style": "form",
+            "explode": true
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "description": "Campo por el cual ordenar los resultados",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Campos a incluir en la respuesta",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de estaciones cercanas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Estacion"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/estaciones/buscar": {
+      "get": {
+        "summary": "Buscar estaciones",
+        "description": "Buscar estaciones por nombre u otros criterios",
+        "parameters": [
+          {
+            "name": "nombre",
+            "in": "query",
+            "description": "Nombre de la estación a buscar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ids",
+            "in": "query",
+            "description": "Filtrar por IDs específicos de estaciones",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "style": "form",
+            "explode": true
+          },
+          {
+            "name": "lineas",
+            "in": "query",
+            "description": "Filtrar por números de línea específicos",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "style": "form",
+            "explode": true
+          },
+          {
+            "name": "ramales",
+            "in": "query",
+            "description": "Filtrar por números de ramal específicos",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "style": "form",
+            "explode": true
+          },
+          {
+            "name": "exclude",
+            "in": "query",
+            "description": "IDs de estaciones a excluir",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "style": "form",
+            "explode": true
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Número máximo de resultados a devolver",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "description": "Campo por el cual ordenar los resultados",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de estaciones coincidentes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Estacion"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/alertas": {
+      "get": {
+        "summary": "Obtener alertas",
+        "description": "Recupera todas las alertas activas",
+        "responses": {
+          "200": {
+            "description": "Lista de alertas activas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Alerta"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/alertas/viaje": {
+      "get": {
+        "summary": "Obtener alertas de viaje",
+        "description": "Recupera alertas para un viaje específico",
+        "parameters": [
+          {
+            "name": "desde",
+            "in": "query",
+            "description": "ID de la estación de origen",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "hasta",
+            "in": "query",
+            "description": "ID de la estación de destino",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de alertas de viaje",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Alerta"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/estaciones/{id}/alertas/geo": {
+      "get": {
+        "summary": "Obtener alertas geográficas para una estación",
+        "description": "Recupera alertas geográficas para una estación específica",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID de la estación",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "token",
+            "in": "query",
+            "description": "Token de autenticación",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Alertas geográficas para la estación",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AlertaGeo"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Estación no encontrada"
+          }
+        }
+      }
+    },
+    "/lineas/{id}/alertas": {
+      "get": {
+        "summary": "Obtener alertas para una línea específica",
+        "description": "Recupera alertas para una línea de tren específica",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID de la línea",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Alertas de la línea",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Alerta"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Línea no encontrada"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Linea": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "ID de la línea"
+          },
+          "nombre": {
+            "type": "string",
+            "description": "Nombre de la línea"
+          },
+          "color": {
+            "type": "string",
+            "description": "Color de la línea en formato hexadecimal"
+          }
+        }
+      },
+      "Estacion": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "ID de la estación"
+          },
+          "nombre": {
+            "type": "string",
+            "description": "Nombre de la estación"
+          },
+          "linea": {
+            "type": "integer",
+            "description": "ID de la línea a la que pertenece esta estación"
+          },
+          "ramal": {
+            "type": "integer",
+            "description": "ID del ramal al que pertenece esta estación"
+          },
+          "ubicacion": {
+            "type": "object",
+            "properties": {
+              "lat": {
+                "type": "number",
+                "format": "double",
+                "description": "Coordenada de latitud"
+              },
+              "lon": {
+                "type": "number",
+                "format": "double",
+                "description": "Coordenada de longitud"
+              }
+            }
+          }
+        }
+      },
+      "Horarios": {
+        "type": "object",
+        "properties": {
+          "results": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "desde": {
+                  "type": "object",
+                  "properties": {
+                    "llegada": {
+                      "type": "string",
+                      "format": "time",
+                      "description": "Hora de llegada"
+                    },
+                    "salida": {
+                      "type": "string",
+                      "format": "time",
+                      "description": "Hora de salida"
+                    }
+                  }
+                },
+                "hasta": {
+                  "type": "object",
+                  "properties": {
+                    "llegada": {
+                      "type": "string",
+                      "format": "time",
+                      "description": "Hora de llegada"
+                    },
+                    "salida": {
+                      "type": "string",
+                      "format": "time",
+                      "description": "Hora de salida"
+                    }
+                  }
+                },
+                "linea": {
+                  "type": "integer",
+                  "description": "ID de la línea"
+                },
+                "ramal": {
+                  "type": "integer",
+                  "description": "ID del ramal"
+                },
+                "cabeceraFinal": {
+                  "type": "integer",
+                  "description": "ID de la estación de destino final"
+                }
+              }
+            }
+          }
+        }
+      },
+      "HorariosGroups": {
+        "type": "object",
+        "description": "Información de horarios agrupados"
+      },
+      "Alerta": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "ID de la alerta"
+          },
+          "titulo": {
+            "type": "string",
+            "description": "Título de la alerta"
+          },
+          "descripcion": {
+            "type": "string",
+            "description": "Descripción de la alerta"
+          },
+          "tipo": {
+            "type": "string",
+            "description": "Tipo de alerta"
+          },
+          "fechaInicio": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Fecha y hora de inicio de la alerta"
+          },
+          "fechaFin": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Fecha y hora de finalización de la alerta"
+          },
+          "linea": {
+            "type": "integer",
+            "description": "ID de la línea relacionada con esta alerta"
+          }
+        }
+      },
+      "AlertaGeo": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "ID de la alerta"
+          },
+          "titulo": {
+            "type": "string",
+            "description": "Título de la alerta"
+          },
+          "descripcion": {
+            "type": "string",
+            "description": "Descripción de la alerta"
+          },
+          "tipo": {
+            "type": "string",
+            "description": "Tipo de alerta"
+          },
+          "ubicacion": {
+            "type": "object",
+            "properties": {
+              "lat": {
+                "type": "number",
+                "format": "double",
+                "description": "Coordenada de latitud"
+              },
+              "lon": {
+                "type": "number",
+                "format": "double",
+                "description": "Coordenada de longitud"
+              },
+              "radio": {
+                "type": "integer",
+                "description": "Radio en metros"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

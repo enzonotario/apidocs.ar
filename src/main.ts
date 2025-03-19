@@ -1,7 +1,7 @@
-import type { Site } from './sites.ts'
+import type { Site } from './types.ts'
 import { dirname, join } from 'node:path'
 import fs from 'fs-extra'
-import { sites } from './sites.ts'
+import { sites } from './sites.js'
 
 export async function main(): Promise<number> {
   for (const site of sites) {
@@ -98,14 +98,15 @@ async function transformList(sites: Site[]) {
   const newContent = `# apidocs.ar
   
 Lista de documentaciones de APIs públicas.
-
 ${Object.entries(sitesGroupedByTag).map(([tag, sites]) => {
-  return `## ${tag}
+  return `
+## ${tag}
 
 ${sites.map((site) => {
   return `- [${site.description}](https://${site.subdomain}.apidocs.ar)`
-}).join('\n')}`
-})}`
+}).join('\n')}
+`
+}).join('')}`
 
   await fs.writeFile(listPath, newContent)
 }

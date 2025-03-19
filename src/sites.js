@@ -1,15 +1,6 @@
 import { fileURLToPath } from 'node:url'
 
-export interface Site {
-  name: string
-  description: string
-  subdomain: string
-  baseDir: string
-  specUrl?: string
-  tags?: string[]
-}
-
-export const sites: Site[] = [
+export const sites = [
   {
     name: 'Deudores BCRA',
     description: 'Central de Deudores',
@@ -25,5 +16,13 @@ export const sites: Site[] = [
     baseDir: '/sites/bcra/cheques',
     specUrl: fileURLToPath(new URL('../assets/cheques.bcra.openapi.json', import.meta.url)),
     tags: ['BCRA'],
+  },
+  {
+    name: 'SOFSE Trenes',
+    description: 'API de Trenes de SOFSE',
+    subdomain: 'trenes.sofse',
+    baseDir: '/sites/sofse/trenes',
+    specUrl: fileURLToPath(new URL('../assets/trenes.sofse.openapi.json', import.meta.url)),
+    tags: ['Transporte'],
   },
 ]
