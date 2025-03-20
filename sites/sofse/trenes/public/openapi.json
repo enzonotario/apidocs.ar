@@ -557,41 +557,6 @@
         }
       }
     },
-    "/estaciones/{id}/alertas/geo": {
-      "get": {
-        "summary": "Obtener alertas geográficas para una estación",
-        "description": "Recupera alertas geográficas para una estación específica",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID de la estación",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Alertas geográficas para la estación",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/AlertaGeo"
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Estación no encontrada"
-          }
-        }
-      }
-    },
     "/lineas/{id}/alertas": {
       "get": {
         "summary": "Obtener alertas para una línea específica",
