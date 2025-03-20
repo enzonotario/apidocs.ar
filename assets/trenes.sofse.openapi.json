@@ -570,14 +570,6 @@
             "schema": {
               "type": "integer"
             }
-          },
-          {
-            "name": "token",
-            "in": "query",
-            "description": "Token de autenticación",
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {
