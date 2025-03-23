@@ -12,15 +12,15 @@
     "site:dev": "node ./src/site-dev.js"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^4.3.0",
+    "@antfu/eslint-config": "^4.11.0",
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^22.13.4",
-    "axios": "^1.7.9",
-    "eslint": "^9.20.1",
+    "@types/node": "^22.13.11",
+    "axios": "^1.8.4",
+    "eslint": "^9.23.0",
     "fs-extra": "^11.3.0",
     "shelljs": "^0.8.5",
-    "typescript": "~5.7.2",
-    "vite": "^6.1.0",
-    "vitest": "^3.0.6"
+    "typescript": "~5.7.3",
+    "vite": "^6.2.2",
+    "vitest": "^3.0.9"
   }
 }
