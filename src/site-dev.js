@@ -41,8 +41,9 @@ async function selectSite() {
 }
 
 async function runVitepress(baseDir) {
-  console.log(`Running VitePress for site in ${baseDir}...`)
-  const { stdout, stderr } = shell.exec(`pnpx vitepress dev ${baseDir}`)
+  const workdir = process.cwd()
+  console.log(`Running VitePress for site in ${workdir}${baseDir}...`)
+  const { stdout, stderr } = shell.exec(`pnpx vitepress dev ${workdir}${baseDir}`)
   console.log(stdout)
   if (stderr) {
     console.error(stderr)
