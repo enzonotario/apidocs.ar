@@ -5,6 +5,7 @@ import { sites } from './sites.js'
 
 export async function main(): Promise<number> {
   for (const site of sites) {
+    await cleanTemplateDir(site)
     await copyTemplateDir(site)
     await updateConfig(site)
     await updateIndex(site)
@@ -16,6 +17,14 @@ export async function main(): Promise<number> {
   await transformList(sites)
 
   return 0
+}
+
+async function cleanTemplateDir() {
+  const templateDir = join(__dirname, 'template')
+
+  if (await fs.pathExists(join(templateDir, 'node_modules'))) {
+    await fs.remove(join(templateDir, 'node_modules'))
+  }
 }
 
 async function copyTemplateDir(site: Site) {

@@ -11,6 +11,10 @@ export default defineConfig({
       { icon: 'github', link: 'https://github.com/enzonotario/apidocs.ar' },
     ],
 
+    nav: [
+      { text: 'apidocs.ar', link: 'https://apidocs.ar' },
+    ],
+
     footer: {
       message: 'Liberado bajo la <a href="https://github.com/enzonotario/apidocs.ar/blob/main/LICENSE">Licencia MIT</a>.',
     },
