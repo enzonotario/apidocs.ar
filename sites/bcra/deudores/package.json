@@ -2,6 +2,9 @@
   "type": "module",
   "private": true,
   "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^3.4.17",
     "vitepress": "latest",
     "vitepress-openapi": "latest"
   }
