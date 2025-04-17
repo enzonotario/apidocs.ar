@@ -7,8 +7,4 @@ prev: false
 next: false
 ---
 
-<script setup>
-import spec from './public/openapi.json'
-</script>
-
-<OASpec :spec="spec" />
+<OASpec />
