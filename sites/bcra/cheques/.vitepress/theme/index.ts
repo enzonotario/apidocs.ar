@@ -1,5 +1,5 @@
 import type { Theme } from 'vitepress'
-import { theme, useTheme } from 'vitepress-openapi/client'
+import { theme, useTheme, useShiki } from 'vitepress-openapi/client'
 import DefaultTheme from 'vitepress/theme'
 
 import ApiDocsLayout from './ApiDocsLayout.vue'
@@ -15,6 +15,8 @@ export default {
         locale: 'es',
       },
     })
+
+    await useShiki().initShiki()
 
     theme.enhanceApp({ app })
   },
