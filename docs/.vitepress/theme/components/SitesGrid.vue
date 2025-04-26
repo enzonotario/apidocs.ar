@@ -14,7 +14,7 @@ const latestSites = computed(() => {
       <h1 class="!text-4xl md:!text-5xl lg:!text-6xl !font-bold text-[var(--vp-home-hero-name-color)]">
         apidocs.ar
       </h1>
-      <p class="text-xl">Documentación de APIs</p>
+      <p class="text-xl">Documentaciones de APIs públicas</p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

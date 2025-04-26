@@ -5,7 +5,7 @@ const gaId = process.env.NODE_ENV === 'production' ? 'G-4RPLQ59LN8' : 'G-TEST'
 export default defineConfig({
   lang: 'es-AR',
   title: 'apidocs.ar',
-  description: 'Documentación de APIs',
+  description: 'Documentaciones de APIs públicas',
   themeConfig: {
     socialLinks: [
       { icon: 'github', link: 'https://github.com/enzonotario/apidocs.ar' },
@@ -23,7 +23,7 @@ export default defineConfig({
     ['meta', { name: 'og:image', content: 'https://apidocs.ar/og.png' }],
     ['meta', { name: 'twitter:card', content: 'summary' }],
     ['meta', { name: 'twitter:title', content: 'apidocs.ar' }],
-    ['meta', { name: 'twitter:description', content: 'Documentación de APIs' }],
+    ['meta', { name: 'twitter:description', content: 'Documentaciones de APIs públicas' }],
 
     // Google Analytics.
     [

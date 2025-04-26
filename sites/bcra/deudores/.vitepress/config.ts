@@ -27,7 +27,7 @@ export default defineConfig({
     ['meta', { name: 'og:image', content: 'https://apidocs.ar/og.png' }],
     ['meta', { name: 'twitter:card', content: 'summary' }],
     ['meta', { name: 'twitter:title', content: 'apidocs.ar' }],
-    ['meta', { name: 'twitter:description', content: 'Documentación de APIs' }],
+    ['meta', { name: 'twitter:description', content: 'Documentaciones de APIs públicas' }],
 
     // Google Analytics.
     [
