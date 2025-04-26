@@ -1,0 +1,32 @@
+export const sites = [
+  {
+    "name": "Deudores BCRA",
+    "description": "Central de Deudores",
+    "subdomain": "deudores.bcra",
+    "baseDir": "/sites/bcra/deudores",
+    "specUrl": "/home/enzo/PhpstormProjects/apidocs.ar/assets/deudores.bcra.openapi.json",
+    "tags": [
+      "BCRA"
+    ]
+  },
+  {
+    "name": "Cheques BCRA",
+    "description": "Cheques denunciados",
+    "subdomain": "cheques.bcra",
+    "baseDir": "/sites/bcra/cheques",
+    "specUrl": "/home/enzo/PhpstormProjects/apidocs.ar/assets/cheques.bcra.openapi.json",
+    "tags": [
+      "BCRA"
+    ]
+  },
+  {
+    "name": "SOFSE Trenes",
+    "description": "API de Trenes de SOFSE",
+    "subdomain": "trenes.sofse",
+    "baseDir": "/sites/sofse/trenes",
+    "specUrl": "/home/enzo/PhpstormProjects/apidocs.ar/assets/trenes.sofse.openapi.json",
+    "tags": [
+      "Transporte"
+    ]
+  }
+]

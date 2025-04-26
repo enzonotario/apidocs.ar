@@ -1,14 +1,12 @@
 ---
 layout: home
-
-hero:
-  name: "apidocs.ar"
-  tagline: "Documentación de APIs"
-  actions:
-    - theme: brand
-      text: Lista de APIs
-      link: /lista
 ---
+
+<script setup>
+import SitesGrid from '.vitepress/theme/components/SitesGrid.vue'
+</script>
+
+<SitesGrid />
 
 ## Aviso
 

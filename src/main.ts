@@ -15,6 +15,7 @@ export async function main(): Promise<number> {
   }
 
   await transformList(sites)
+  await writeList(sites)
 
   return 0
 }
@@ -88,8 +89,6 @@ async function transformSpec(site: Site) {
 }
 
 async function transformList(sites: Site[]) {
-  // write sites as MarkdownTable in `lista.md`
-
   const sitesGroupedByTag: any[] = sites.reduce((acc, site) => {
     site.tags.forEach((tag) => {
       if (!acc[tag]) {
@@ -118,4 +117,10 @@ ${sites.map((site) => {
 }).join('')}`
 
   await fs.writeFile(listPath, newContent)
+}
+
+async function writeList(sites: Site[]) {
+  const listPathTs = join(__dirname, '..', 'docs', 'lista.ts')
+  const newContentTs = `export const sites = ${JSON.stringify(sites, null, 2)}`
+  await fs.writeFile(listPathTs, newContentTs)
 }

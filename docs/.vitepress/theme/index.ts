@@ -1,13 +1,10 @@
-import type { Theme } from 'vitepress'
+import type {Theme} from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
+import ApiDocsLayout from './ApiDocsLayout.vue'
 
-// import { theme } from 'vitepress-openapi/client';
-// import 'vitepress-openapi/dist/style.css';
-// import './style.css'
+import './style.css'
 
 export default {
   ...DefaultTheme,
-  // async enhanceApp({ app, router, siteData }) {
-  //   theme.enhanceApp({ app });
-  // },
+  Layout: ApiDocsLayout,
 } satisfies Theme
