@@ -10,3 +10,7 @@ Lista de documentaciones de APIs públicas.
 ## Transporte
 
 - [API de Trenes de SOFSE](https://trenes.sofse.apidocs.ar)
+
+## Argentina
+
+- [API del Servicio de Normalización de Datos Geográficos de Argentina](https://georef.argentina.apidocs.ar)

@@ -28,5 +28,15 @@ export const sites = [
     "tags": [
       "Transporte"
     ]
+  },
+  {
+    "name": "Georef",
+    "description": "API del Servicio de Normalización de Datos Geográficos de Argentina",
+    "subdomain": "georef.argentina",
+    "baseDir": "/sites/argentina/georef",
+    "specUrl": "/home/enzo/PhpstormProjects/apidocs.ar/assets/georef.argentina.openapi.json",
+    "tags": [
+      "Argentina"
+    ]
   }
 ]

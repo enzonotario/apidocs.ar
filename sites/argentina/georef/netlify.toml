@@ -1,0 +1,4 @@
+[build]
+base = "/sites/argentina/georef"
+publish = ".vitepress/dist"
+command = "npx vitepress build"

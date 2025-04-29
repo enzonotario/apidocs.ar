@@ -25,4 +25,12 @@ export const sites = [
     specUrl: fileURLToPath(new URL('../assets/trenes.sofse.openapi.json', import.meta.url)),
     tags: ['Transporte'],
   },
+  {
+    name: 'Georef',
+    description: 'API del Servicio de Normalización de Datos Geográficos de Argentina',
+    subdomain: 'georef.argentina',
+    baseDir: '/sites/argentina/georef',
+    specUrl: fileURLToPath(new URL('../assets/georef.argentina.openapi.json', import.meta.url)),
+    tags: ['Argentina'],
+  },
 ]
