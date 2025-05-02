@@ -18,27 +18,29 @@ const latestSites = computed(() => {
     </div>
 
     <div class="flex flex-wrap justify-center">
-      <div v-for="site in latestSites"
-           :key="site.subdomain"
-           class="w-full max-w-full sm:w-1/2 md:w-1/3 p-2 flex">
-        <div class="flex-1 border border-[var(--vp-c-divider)] rounded-lg p-4 hover:border-[var(--vp-c-neutral)]">
-          <h3 class="text-lg font-semibold !mt-0">
-            <a :href="`https://${site.subdomain}.apidocs.ar`"
-               target="_blank"
-               class="text-primary !no-underline hover:!underline">
-              {{ site.name }}
-            </a>
-          </h3>
-          <p class="text-[var(--vp-c-text-1)]">{{ site.description }}</p>
-          <div class="flex flex-wrap gap-2">
+      <a v-for="site in latestSites"
+         :key="site.subdomain"
+         :href="`https://${site.subdomain}.apidocs.ar`"
+         target="_blank"
+         rel="noopener noreferrer"
+         aria-label="Ver documentación"
+         class="w-full max-w-full sm:w-1/2 md:w-1/3 p-2 flex !no-underline">
+        <div class="flex-1 border border-[var(--vp-c-divider)] rounded-lg p-4 hover:border-[var(--vp-c-neutral)] text-center space-y-4">
+          <div class="flex flex-wrap justify-center items-center gap-2">
             <span v-for="tag in site.tags"
                   :key="tag"
                   class="bg-[var(--vp-c-bg-alt)] text-[var(--vp-c-primary-text)] text-xs font-semibold rounded-full px-2 py-1">
               {{ tag }}
             </span>
           </div>
+          <div>
+            <h3 class="text-lg font-semibold !mt-0 text-primary !no-underline hover:!underline">
+              {{ site.name }}
+            </h3>
+          </div>
+          <p class="text-[var(--vp-c-text-1)]">{{ site.description }}</p>
         </div>
-      </div>
+      </a>
     </div>
 
     <div class="flex justify-center items-center">
