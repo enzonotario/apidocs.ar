@@ -1760,6 +1760,26 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/provincias_request_bulk"
+              },
+              "examples": {
+                "Provincias": {
+                  "value": {
+                    "provincias": [
+                      {
+                        "nombre": "salta",
+                        "campos": "nombre, id"
+                      },
+                      {
+                        "nombre": "santa fe",
+                        "campos": "nombre, id"
+                      },
+                      {
+                        "id": "02",
+                        "campos": "nombre, id, categoria"
+                      }
+                    ]
+                  }
+                }
               }
             }
           }
@@ -1851,6 +1871,26 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/departamentos_request_bulk"
+              },
+              "examples": {
+                "Departamentos": {
+                  "value": {
+                    "departamentos": [
+                      {
+                        "nombre": "General José de San Martín",
+                        "campos": "nombre, id"
+                      },
+                      {
+                        "nombre": "General Obligado",
+                        "campos": "nombre, id"
+                      },
+                      {
+                        "id": "02007",
+                        "campos": "nombre, id, categoria"
+                      }
+                    ]
+                  }
+                }
               }
             }
           }
@@ -1942,6 +1982,26 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/municipios_request_bulk"
+              },
+              "examples": {
+                "Municipios": {
+                  "value": {
+                    "municipios": [
+                      {
+                        "nombre": "Tartagal",
+                        "campos": "nombre, id"
+                      },
+                      {
+                        "nombre": "Rosario",
+                        "campos": "nombre, id"
+                      },
+                      {
+                        "id": "022007",
+                        "campos": "nombre, id, categoria"
+                      }
+                    ]
+                  }
+                }
               }
             }
           }
@@ -2036,6 +2096,26 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/localidades_censales_request_bulk"
+              },
+              "examples": {
+                "Localidades Censales": {
+                  "value": {
+                    "localidades_censales": [
+                      {
+                        "nombre": "Tartagal",
+                        "campos": "nombre, id"
+                      },
+                      {
+                        "nombre": "Rosario",
+                        "campos": "nombre, id"
+                      },
+                      {
+                        "id": "02000010",
+                        "campos": "nombre, id, categoria"
+                      }
+                    ]
+                  }
+                }
               }
             }
           }
@@ -2133,6 +2213,26 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/asentamientos_request_bulk"
+              },
+              "examples": {
+                "Asentamientos": {
+                  "value": {
+                    "asentamientos": [
+                      {
+                        "nombre": "Tartagal",
+                        "campos": "nombre, id"
+                      },
+                      {
+                        "nombre": "Rosario",
+                        "campos": "nombre, id"
+                      },
+                      {
+                        "id": "0200701001",
+                        "campos": "nombre, id, categoria"
+                      }
+                    ]
+                  }
+                }
               }
             }
           }
@@ -2230,6 +2330,26 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/localidades_request_bulk"
+              },
+              "examples": {
+                "Localidades": {
+                  "value": {
+                    "localidades": [
+                      {
+                        "nombre": "Tartagal",
+                        "campos": "nombre, id"
+                      },
+                      {
+                        "nombre": "Rosario",
+                        "campos": "nombre, id"
+                      },
+                      {
+                        "id": "0200701001",
+                        "campos": "nombre, id, categoria"
+                      }
+                    ]
+                  }
+                }
               }
             }
           }
@@ -2327,6 +2447,26 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/calles_request_bulk"
+              },
+              "examples": {
+                "Calles": {
+                  "value": {
+                    "calles": [
+                      {
+                        "nombre": "Federico Leloir",
+                        "campos": "nombre, id"
+                      },
+                      {
+                        "nombre": "Av. Corrientes",
+                        "campos": "nombre, id"
+                      },
+                      {
+                        "id": "0200701000420",
+                        "campos": "nombre, id, categoria"
+                      }
+                    ]
+                  }
+                }
               }
             }
           }
@@ -2421,6 +2561,25 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/direcciones_request_bulk"
+              },
+              "examples": {
+                "Direcciones": {
+                  "value": {
+                    "direcciones": [
+                      {
+                        "direccion": "santa fe 3100",
+                        "max": 1,
+                        "campos": "basico"
+                      },
+                      {
+                        "direccion": "corientes 4010",
+                        "max": 1,
+                        "campos": "basico",
+                        "departamento": "General López"
+                      }
+                    ]
+                  }
+                }
               }
             }
           }
@@ -2494,6 +2653,25 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/ubicacion_request_bulk"
+              },
+              "examples": {
+                "Ubicaciones": {
+                  "value": {
+                    "ubicaciones": [
+                      {
+                        "lat": -27.274161,
+                        "lon": -66.752929,
+                        "campos": "completo"
+                      },
+                      {
+                        "lat": -31.480693,
+                        "lon": -59.092813,
+                        "aplanar": true,
+                        "campos": "completo"
+                      }
+                    ]
+                  }
+                }
               }
             }
           }
