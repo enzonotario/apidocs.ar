@@ -16,6 +16,11 @@ export default {
       i18n: {
         locale: 'es',
       },
+      playground: {
+        jsonEditor: {
+          mode: 'text',
+        },
+      },
     })
 
     await useShiki().initShiki()
