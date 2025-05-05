@@ -1,0 +1,4 @@
+[build]
+base = "/sites/bcra/principales-variables"
+publish = ".vitepress/dist"
+command = "npx vitepress build"

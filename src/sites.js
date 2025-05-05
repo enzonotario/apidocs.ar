@@ -18,6 +18,14 @@ export const sites = [
     tags: ['BCRA'],
   },
   {
+    name: 'Principales Variables BCRA',
+    description: 'API de Principales Variables',
+    subdomain: 'principales-variables.bcra',
+    baseDir: '/sites/bcra/principales-variables',
+    specUrl: fileURLToPath(new URL('../assets/principales-variables.bcra.openapi.json', import.meta.url)),
+    tags: ['BCRA'],
+  },
+  {
     name: 'SOFSE Trenes',
     description: 'API de Trenes de SOFSE',
     subdomain: 'trenes.sofse',

@@ -1,0 +1,15 @@
+{
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "chart.js": "^4.4.9",
+    "chartjs-plugin-datalabels": "^2.2.0",
+    "chartjs-plugin-zoom": "^2.2.0",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^3.4.17",
+    "vitepress": "latest",
+    "vitepress-openapi": "latest",
+    "vue-chartjs": "^5.3.2"
+  }
+}
