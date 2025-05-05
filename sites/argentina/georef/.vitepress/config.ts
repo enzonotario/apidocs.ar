@@ -12,7 +12,7 @@ const operationsTags = openapi.getOperationsTags() ?? []
 export default defineConfig({
   lang: 'es-AR',
   title: 'Georef',
-  description: 'API de Trenes de SOFSE',
+  description: 'API del Servicio de Normalización de Datos Geográficos de Argentina',
   themeConfig: {
     socialLinks: [
       { icon: 'github', link: 'https://github.com/enzonotario/apidocs.ar' },
