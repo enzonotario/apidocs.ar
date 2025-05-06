@@ -6,7 +6,7 @@ Lista de documentaciones de APIs públicas.
 
 - [Central de Deudores](https://deudores.bcra.apidocs.ar)
 - [Cheques denunciados](https://cheques.bcra.apidocs.ar)
-- [API de Principales Variables](https://principales-variables.bcra.apidocs.ar)
+- [Estadísticas Monetarias / Principales Variables](https://principales-variables.bcra.apidocs.ar)
 
 ## Transporte
 

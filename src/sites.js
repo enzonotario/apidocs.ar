@@ -19,7 +19,7 @@ export const sites = [
   },
   {
     name: 'Principales Variables BCRA',
-    description: 'API de Principales Variables',
+    description: 'Estadísticas Monetarias / Principales Variables',
     subdomain: 'principales-variables.bcra',
     baseDir: '/sites/bcra/principales-variables',
     specUrl: fileURLToPath(new URL('../assets/principales-variables.bcra.openapi.json', import.meta.url)),

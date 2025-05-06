@@ -21,7 +21,7 @@ export const sites = [
   },
   {
     "name": "Principales Variables BCRA",
-    "description": "API de Principales Variables",
+    "description": "Estadísticas Monetarias / Principales Variables",
     "subdomain": "principales-variables.bcra",
     "baseDir": "/sites/bcra/principales-variables",
     "specUrl": "/home/enzo/PhpstormProjects/apidocs.ar/assets/principales-variables.bcra.openapi.json",
