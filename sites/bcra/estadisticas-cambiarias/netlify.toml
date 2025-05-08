@@ -1,0 +1,4 @@
+[build]
+base = "/sites/bcra/estadisticas-cambiarias"
+publish = ".vitepress/dist"
+command = "npx vitepress build"

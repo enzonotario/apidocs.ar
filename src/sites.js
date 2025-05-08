@@ -26,6 +26,14 @@ export const sites = [
     tags: ['BCRA'],
   },
   {
+    name: 'Estadisticas Cambiarias',
+    description: 'Estadísticas Cambiarias',
+    subdomain: 'estadisticas-cambiarias.bcra',
+    baseDir: '/sites/bcra/estadisticas-cambiarias',
+    specUrl: fileURLToPath(new URL('../assets/estadisticas-cambiarias.bcra.openapi.json', import.meta.url)),
+    tags: ['BCRA'],
+  },
+  {
     name: 'SOFSE Trenes',
     description: 'API de Trenes de SOFSE',
     subdomain: 'trenes.sofse',

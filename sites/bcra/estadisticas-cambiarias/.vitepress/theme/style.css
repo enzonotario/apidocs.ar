@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.VPDoc .content {
+    max-width: none !important;
+}
+
+.VPDoc .content .content-container {
+    max-width: none !important;
+}
+
+.VPDoc .container {
+    max-width: 1400px !important;
+}
+
+.VPNavBar.top, .dark .VPNavBar.top {
+    background-color: transparent !important;
+}
+.VPNavBar {
+    background-color: rgba(255, 255, 255, .7) !important;
+    backdrop-filter: blur(12px);
+    transition: background-color 0.3s ease-in-out;
+}
+.dark .VPNavBar {
+    background-color: rgba(0, 0, 0, .7) !important;
+}
+.VPNavBar .divider {
+    transition: background-color 0.3s ease-in-out;
+}
+.VPNavBar.top .divider, .dark .VPNavBar.top .divider {
+    background-color: transparent !important;
+}
+.VPNavBar:not(.home.top) .divider-line {
+    background-color: transparent !important;
+}
+
+.VPLocalNav {
+    background-color: rgba(255, 255, 255, .5) !important;
+    backdrop-filter: blur(12px);
+    transition: background-color 0.3s ease-in-out;
+}
+
+.dark .VPLocalNav {
+    background-color: rgba(0, 0, 0, .5) !important;
+}

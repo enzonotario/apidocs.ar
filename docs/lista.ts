@@ -30,6 +30,16 @@ export const sites = [
     ]
   },
   {
+    "name": "Estadisticas Cambiarias",
+    "description": "Estadísticas Cambiarias",
+    "subdomain": "estadisticas-cambiarias.bcra",
+    "baseDir": "/sites/bcra/estadisticas-cambiarias",
+    "specUrl": "/home/enzo/PhpstormProjects/apidocs.ar/assets/estadisticas-cambiarias.bcra.openapi.json",
+    "tags": [
+      "BCRA"
+    ]
+  },
+  {
     "name": "SOFSE Trenes",
     "description": "API de Trenes de SOFSE",
     "subdomain": "trenes.sofse",
