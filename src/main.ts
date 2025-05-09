@@ -4,7 +4,7 @@ import fs from 'fs-extra'
 import { sites } from './sites.js'
 
 export async function main(): Promise<number> {
-  for (const site of sites) {
+  for (const site of sites.filter(site => site.autogenerate === undefined || site.autogenerate)) {
     await cleanTemplateDir(site)
     await copyTemplateDir(site)
     await updateConfig(site)

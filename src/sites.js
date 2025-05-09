@@ -24,6 +24,7 @@ export const sites = [
     baseDir: '/sites/bcra/principales-variables',
     specUrl: fileURLToPath(new URL('../assets/principales-variables.bcra.openapi.json', import.meta.url)),
     tags: ['BCRA'],
+    autogenerate: false,
   },
   {
     name: 'Estadisticas Cambiarias',
@@ -32,6 +33,7 @@ export const sites = [
     baseDir: '/sites/bcra/estadisticas-cambiarias',
     specUrl: fileURLToPath(new URL('../assets/estadisticas-cambiarias.bcra.openapi.json', import.meta.url)),
     tags: ['BCRA'],
+    autogenerate: false,
   },
   {
     name: 'SOFSE Trenes',
@@ -48,5 +50,6 @@ export const sites = [
     baseDir: '/sites/argentina/georef',
     specUrl: fileURLToPath(new URL('../assets/georef.argentina.openapi.json', import.meta.url)),
     tags: ['Argentina'],
+    autogenerate: false,
   },
 ]

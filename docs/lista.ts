@@ -27,7 +27,8 @@ export const sites = [
     "specUrl": "/home/enzo/PhpstormProjects/apidocs.ar/assets/principales-variables.bcra.openapi.json",
     "tags": [
       "BCRA"
-    ]
+    ],
+    "autogenerate": false
   },
   {
     "name": "Estadisticas Cambiarias",
@@ -37,7 +38,8 @@ export const sites = [
     "specUrl": "/home/enzo/PhpstormProjects/apidocs.ar/assets/estadisticas-cambiarias.bcra.openapi.json",
     "tags": [
       "BCRA"
-    ]
+    ],
+    "autogenerate": false
   },
   {
     "name": "SOFSE Trenes",
@@ -57,6 +59,7 @@ export const sites = [
     "specUrl": "/home/enzo/PhpstormProjects/apidocs.ar/assets/georef.argentina.openapi.json",
     "tags": [
       "Argentina"
-    ]
+    ],
+    "autogenerate": false
   }
 ]
