@@ -3,6 +3,7 @@
   "type": "module",
   "version": "0.0.0",
   "private": true,
+  "workspaces": [],
   "scripts": {
     "dev": "cd docs && pnpm run dev",
     "build": "tsc && vite build",

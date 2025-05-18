@@ -1,0 +1,39 @@
+{
+  "name": "@apidocs.ar/core",
+  "version": "0.0.3",
+  "description": "Core components for apidocs.ar",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./dist/index.css": "./dist/index.css"
+  },
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "build-watch": "vite build --watch",
+    "prepublishOnly": "pnpm run build"
+  },
+  "dependencies": {
+    "vitepress": "latest",
+    "vue": "^3.5.14"
+  },
+  "devDependencies": {
+    "typescript": "~5.8.3",
+    "vite": "^6.3.5",
+    "@vitejs/plugin-vue": "^5.2.4",
+    "tailwindcss": "^3.4.17",
+    "postcss": "^8.5.3",
+    "autoprefixer": "^10.4.21"
+  },
+  "peerDependencies": {
+    "vitepress": "^1.0.0",
+    "vue": "^3.3.0"
+  }
+}
