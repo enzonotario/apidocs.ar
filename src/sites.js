@@ -52,4 +52,13 @@ export const sites = [
     tags: ['Argentina'],
     autogenerate: false,
   },
+  {
+    name: 'Series de Tiempo',
+    description: 'API de Series de Tiempo de la República Argentina',
+    subdomain: 'series-tiempo.argentina',
+    baseDir: '/sites/argentina/series-tiempo',
+    specUrl: fileURLToPath(new URL('../assets/series-tiempo.argentina.openapi.json', import.meta.url)),
+    tags: ['Argentina'],
+    autogenerate: false,
+  },
 ]

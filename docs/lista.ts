@@ -61,5 +61,16 @@ export const sites = [
       "Argentina"
     ],
     "autogenerate": false
+  },
+  {
+    "name": "Series de Tiempo",
+    "description": "API de Series de Tiempo de la República Argentina",
+    "subdomain": "series-tiempo.argentina",
+    "baseDir": "/sites/argentina/series-tiempo",
+    "specUrl": "/home/enzo/PhpstormProjects/apidocs.ar/assets/series-tiempo.argentina.openapi.json",
+    "tags": [
+      "Argentina"
+    ],
+    "autogenerate": false
   }
 ]

@@ -1,0 +1,750 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "API de Series de Tiempo de la República Argentina",
+    "description": "API de Series de Tiempo de la República Argentina.\nPara ver ejemplos de uso de la API, dirigirse a la [documentación del proyecto](https://apis.datos.gob.ar/series).\nPara leer el código de la API, acceder a [GitHub](https://github.com/datosgobar/series-tiempo-ar-api).",
+    "contact": {
+      "name": "Equipo de Datos Argentina",
+      "url": "https://github.com/datosgobar",
+      "email": "datosargentina@jefatura.gob.ar"
+    },
+    "version": "1.2.0-beta.3"
+  },
+  "externalDocs": {
+    "url": "https://datosgobar.github.io/"
+  },
+  "servers": [
+    {
+      "url": "https://apis.datos.gob.ar/series/api"
+    }
+  ],
+  "paths": {
+    "/series": {
+      "get": {
+        "tags": [
+          "Series de Tiempo"
+        ],
+        "summary": "Valores de series de tiempo",
+        "description": "Obtener valores de una o más series de tiempo a partir de sus identificadores. Permite filtrar por fechas, cambiar intervalos de tiempo y unidades de medida.\n\nMediante este endpoint se accede a los valores de series usando sus identificadores únicos. Se pueden filtrar datos por período específico, modificar intervalos de tiempo y unidades de medida, entre otras operaciones.",
+        "operationId": "series",
+        "parameters": [
+          {
+            "name": "ids",
+            "in": "query",
+            "description": "Parámetro obligatorio que consiste en el indentificador único de la serie o de las series cuyos valores queremos consultar. Si son varias series, sus ids se deben enlistar separándolos por comas.\nSe pueden obtener los ids de las series en la columna 'serie_id' del siguiente csv:\nhttps://apis.datos.gob.ar/series/api/dump/series-tiempo-metadatos.csv. .",
+            "required": true,
+            "style": "form",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "455.1_ALMACENCEN_0_M_7_95,455.1_CANALES_ONINE_0_M_15_84,455.1_CARNESNES_0_M_6_38,455.1_VERDULERIARIA_0_M_19_68"
+            }
+          },
+          {
+            "name": "representation_mode",
+            "in": "query",
+            "description": "Consultar la variación de valores de una serie (aumentos o disminuciones periodo a periodo). Opciones disponibles: \n\n* `change`: mostrar diferencia entre valores consecutivos. \n* `percentage_change`: mostrar diferencia porcentual entre valores consecutivos.\n* `change_a_year_ago`: mostrar diferencia respecto al mismo período del año anterior.\n* `percentage_change_a_year_ago`: mostrar diferencia porcentual respecto al mismo período del año anterior.\n* `value`: mostrar valores originales sin variación (opción por defecto).\n\n\n<details>\n<summary><strong>Ejemplos</strong></summary>\n\n* Si el IPC de marzo fue 0.11 y el de abril 0.088, con 'change' se obtiene -0.022 para abril.\n\n* Si el IPC de marzo fue 0.11 y el de abril 0.088, con 'percentage_change' se obtiene -2.2% para abril.\n\n* Si el IPC de marzo 2023 fue 0.077 y el de marzo 2024 fue 0.11, con 'change_a_year_ago' se obtiene 0.033 para abril 2024.\n\n* Si el IPC de marzo 2023 fue 0.077 y el de marzo 2024 fue 0.11, con 'percentage_change_a_year_ago' se obtiene 3.3% para abril 2024.\n</details>",
+            "schema": {
+              "type": "string",
+              "default": "value",
+              "enum": [
+                "value",
+                "change",
+                "percent_change",
+                "change_a_year_ago",
+                "percent_change_a_year_ago"
+              ]
+            },
+            "example": "value"
+          },
+          {
+            "name": "collapse",
+            "in": "query",
+            "description": "Modificar el intervalo de tiempo utilizado por la serie. Si no se indica nada, se mantiene la frecuencia original. Opciones disponibles:\n* `year`: transformar datos para mostrarlos con frecuencia anual.\n* `quarter`: transformar datos para mostrarlos con frecuencia trimestral.\n* `semester`: transformar datos para mostrarlos con frecuencia semestral.\n* `month`: transformar datos para mostrarlos con frecuencia mensual.\n* `week`: transformar datos para mostrarlos con frecuencia semanal.\n* `day`: mostrar datos con frecuencia diaria.\n\n<details>\n<summary><strong>Observaciones</strong></summary>\n\n* Cada serie tiene una frecuencia original. Si se indica una frecuencia más alta (ejemplo 'week' para una serie mensual), la API arrojará error.\n\n* Al consultar varias series, 'collapse' afecta a todas y debe ser válido para todas.\n\n* Por defecto, los datos obtenidos al aplicar 'collapse' son promedios, salvo indicación contraria en 'collapse_aggregation'.\n</details>",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "year",
+                "quarter",
+                "semester",
+                "month",
+                "week",
+                "day"
+              ]
+            },
+            "example": "month"
+          },
+          {
+            "name": "collapse_aggregation",
+            "in": "query",
+            "description": "Obtener promedios, sumatorias, valores máximos y mínimos de una serie de tiempo. Los datos pueden ser anuales, semestrales, trimestrales, mensuales o semanales según lo especificado en 'collapse'. Opciones disponibles:\n* `avg`: promediar valores del intervalo (opción por defecto).\n* `sum`: sumar todos los valores del intervalo.\n* `end_of_period`: obtener el último valor del intervalo.\n* `min`: obtener valor mínimo del intervalo.\n* `max`: obtener valor máximo del intervalo.\n\n<details>\n<summary><strong>Observaciones</strong></summary>\n\n* Para que 'collapse_aggregation' funcione es necesario especificar un valor válido en 'collapse'.\n\n* Al consultar varias series sin especificar 'collapse', se usará por defecto el intervalo de la serie con intervalos más largos (ej: si hay una serie mensual y otra semestral, se calcularán valores por semestre).\n</details>",
+            "schema": {
+              "type": "string",
+              "default": "avg",
+              "enum": [
+                "avg",
+                "sum",
+                "end_of_period",
+                "min",
+                "max"
+              ]
+            },
+            "example": "avg"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Este parámetro opcional permite especificar la cantidad máxima de valores que se  desean obtener. Debe especificarse un número entero positivo, no mayor que 1000, ya que  esa es la cantidad máxima de resultados devueltos por la API. El valor por defecto si no se especifica valor alguno es 100.",
+            "schema": {
+              "maximum": 1000,
+              "minimum": 1,
+              "type": "integer",
+              "default": 100
+            },
+            "example": 100
+          },
+          {
+            "name": "start_date",
+            "in": "query",
+            "description": "Fecha y hora en formato ISO 8601. En el parámetro 'start_date' se especifica la fecha a partir de la cual nos interesa obtener datos. Admite AAAA-MM o AAAA-MM-DD.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "description": "Fecha y hora en formato ISO 8601. El parámetro 'end_date' indica la última fecha de la que nos interesa obtener datos.Admite AAAA-MM o AAAA-MM-DD",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "description": "El parámetro opcional 'start' nos permite hacer un filtro extra y excluir valores de la serie.Se debe brindar un entero positivo que corresponderá a la cantidad de valores que se dejarán afuera, contando desde el comienzo de la serie.   ",
+            "schema": {
+              "minimum": 0,
+              "type": "integer",
+              "default": 0
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "description": "Especificar el formato de los datos solicitados. Opciones disponibles:\n* `json`: devolver objeto json con datos y metadatos de las series.\n* `csv`: devolver series en formato separado por comas (sin metadatos).",
+            "schema": {
+              "type": "string",
+              "default": "json",
+              "enum": [
+                "json",
+                "csv"
+              ]
+            },
+            "example": "json"
+          },
+          {
+            "name": "header",
+            "in": "query",
+            "description": "Especificar el formato de los encabezados en archivos CSV. Solo aplicable cuando format=csv. Opciones disponibles:\n* `titles`: usar títulos de las series (ej: 'oferta_global_pib') - opción por defecto.\n* `ids`: usar identificadores únicos de las series (los mismos del parámetro ids).\n* `descriptions`: usar descripciones completas (ej: 'Plazo fijo entre 60-89 días en millones de pesos. Categoría II-VI').",
+            "schema": {
+              "type": "string",
+              "default": "titles",
+              "enum": [
+                "titles",
+                "ids",
+                "descriptions"
+              ]
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Especifica el orden temporal de los resultados devueltos, siendo asc el valor por defecto.Las opciones disponibles son:\n* `asc`: Se devuelven los valores más antiguos primero (indicación por defecto).\n* `desc`: Se devuelven los valores más recientes primero.",
+            "schema": {
+              "type": "string",
+              "default": "asc",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            },
+            "example": "asc"
+          },
+          {
+            "name": "metadata",
+            "in": "query",
+            "description": "Especificar el nivel de detalle de metadatos. Solo aplicable cuando format=json. Opciones disponibles:\n* `none`: devolver solo datos, sin metadatos.\n* `only`: devolver solo metadatos, sin datos.\n* `simple`: devolver metadatos esenciales para comprender y utilizar las series (opción por defecto).\n* `full`: devolver todos los metadatos disponibles relacionados con cada serie.",
+            "schema": {
+              "type": "string",
+              "default": "simple",
+              "enum": [
+                "none",
+                "only",
+                "simple",
+                "full"
+              ]
+            },
+            "example": "simple"
+          },
+          {
+            "name": "decimal",
+            "in": "query",
+            "description": "Especificar el carácter para números decimales. Solo aplicable cuando format=csv. Opciones disponibles:\n* `,`: usar coma.\n* `.`: usar punto (opción por defecto).",
+            "schema": {
+              "type": "string",
+              "default": ".",
+              "enum": [
+                ".",
+                ","
+              ]
+            }
+          },
+          {
+            "name": "sep",
+            "in": "query",
+            "description": "Especificar el carácter separador de valores. Solo aplicable cuando format=csv. Se puede usar cualquier carácter UTF-8, aunque se recomienda mantener la coma (,) que es el valor por defecto.",
+            "schema": {
+              "type": "string",
+              "default": ","
+            }
+          },
+          {
+            "name": "last",
+            "in": "query",
+            "description": "Obtener los últimos N valores de la serie. Especificar un número entero que indica cuántos valores finales se desean. No usar junto con 'start', 'sort' o 'limit'.",
+            "schema": {
+              "maximum": 1000,
+              "minimum": 0,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "La consulta se ejecutó exitosamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {}
+                      },
+                      "meta": {
+                        "type": "object",
+                        "properties": {}
+                      },
+                      "params": {
+                        "type": "object",
+                        "properties": {}
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Solicitud incorrecta",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/search": {
+      "get": {
+        "tags": [
+          "Búsqueda"
+        ],
+        "summary": "Buscar series de tiempo",
+        "description": "Buscar series de tiempo de manera flexible sin necesidad de identificadores. Aplicar filtros y organizar resultados según diversos criterios.\n\nPermite encontrar series mediante texto libre y filtrar por temáticas, fuentes, publicadores y catálogo.",
+        "operationId": "search",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "description": "En este parámetro opcional se puede ingresar libremente una o más palabras claves para encontrar series relacionadas.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "ipc"
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "description": "Indicar el criterio para ordenar las series obtenidas en una búsqueda. Opciones disponibles: \n* `relevance`: ordenar por relevancia para la búsqueda realizada.\n* `hits_90_days`: ordenar por popularidad (consultas en los últimos 90 días).\n* `frequency`: ordenar por frecuencia de actualización (anual, mensual, diaria, etc).",
+            "schema": {
+              "type": "string",
+              "default": "relevance",
+              "enum": [
+                "relevance",
+                "hits_90_days",
+                "frequency"
+              ],
+              "example": "hits_90_days"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Determinar si los resultados se ordenan de manera ascendente o descendente según el criterio de 'sort_by'. Si no se especifica 'sort_by', se ordenan por relevancia. Opciones disponibles:\n\n* `asc`: ordenar de menor a mayor.\n* `desc`: ordenar de mayor a menor.",
+            "schema": {
+              "type": "string",
+              "default": "desc"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Indicar el máximo de resultados a obtener. Debe ser un número entero no mayor a 1000 (límite máximo de la API). Por defecto es 100.",
+            "schema": {
+              "maximum": 1000,
+              "minimum": 1,
+              "type": "integer",
+              "default": 100
+            }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "description": "Omitir los primeros resultados de la búsqueda. Se debe especificar un entero positivo que indica cuántos valores iniciales se omitirán.\n\nÚtil para \"paginar\" resultados cuando se necesitan más valores de los que la API puede proveer en una sola llamada (1000). Permite realizar llamadas sucesivas comenzando donde terminó la anterior.",
+            "schema": {
+              "minimum": 0,
+              "type": "integer",
+              "default": 0
+            }
+          },
+          {
+            "name": "dataset_theme",
+            "in": "query",
+            "description": "Este parámetro opcional permite buscar todas las series de una temática específica. Para saber las temáticas que existen actualmente se puede consultar el siguiente endpoint: [Buscar listas](/operations/search_listas).",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "units",
+            "in": "query",
+            "description": "Este parámetro opcional permite buscar todas las series que usen una misma unidad de medida. Se pueden ver las unidades disponibles  en el siguiente endpoint: [Buscar listas](/operations/search_listas).",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dataset_source",
+            "in": "query",
+            "description": "Este parámetro opcional permite buscar todas las series con una misma fuente. Se pueden ver las fuentes existentes actualmente\nen el siguiente endpoint: [Buscar listas](/operations/search_listas).",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dataset_publisher_name",
+            "in": "query",
+            "description": "Este parámetro opcional permite buscar todas las series de un mismo publicador. Se pueden ver los publicadores existentes actualmente en el siguiente endpoint: [Buscar listas](/operations/search_listas).",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "catalog_id",
+            "in": "query",
+            "description": "Este parámetro opcional permite buscar todas las series de un mismo catálogo.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "sspm",
+                "snic",
+                "obras",
+                "turismo",
+                "bcra",
+                "justicia",
+                "jgm",
+                "agroindustria",
+                "smn",
+                "salud",
+                "energia",
+                "defensa",
+                "cultura",
+                "otros",
+                "transporte"
+              ]
+            }
+          },
+          {
+            "name": "aggregations",
+            "in": "query",
+            "description": "Obtener conteo detallado de resultados por eje temático, publicador, fuente, catálogo y unidad de medida. Para activar esta funcionalidad, incluir cualquier carácter en el valor. Dejar vacío para desactivar.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "La consulta se ejecutó exitosamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {}
+                      },
+                      "count": {
+                        "type": "number"
+                      },
+                      "limit": {
+                        "type": "number"
+                      },
+                      "start": {
+                        "type": "number"
+                      },
+                      "aggregations": {
+                        "type": "object",
+                        "properties": {}
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Solicitud incorrecta",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/search/{listas}": {
+      "get": {
+        "tags": [
+          "Búsqueda"
+        ],
+        "summary": "Buscar listas",
+        "description": "Obtener listas de temáticas, fuentes, unidades de medida y publicadores disponibles para aplicar filtros en el endpoint /search.",
+        "operationId": "search_listas",
+        "parameters": [
+          {
+            "name": "listas",
+            "in": "path",
+            "description": "Se brinda el nombre de la lista que se desea obtener\n\nAdmite los siguientes valores:\n\n* `dataset_theme`: listado de temáticas disponibles.\n\n* `dataset_source`: listado de fuentes de las que provienen las series.\n\n* `dataset_publisher_name`: listado de organismo que publican series de tiempo.\n\n* `field_units`: listado de unidades de medida que se pueden encontrar en las series de tiempo.\n\n* `catalog_id`: listado de catálogos.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "dataset_theme",
+                "dataset_source",
+                "dataset_publisher_name",
+                "field_units",
+                "catalog_id"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "La consulta se ejecutó exitosamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {}
+                      },
+                      "count": {
+                        "type": "number"
+                      },
+                      "limit": {
+                        "type": "number"
+                      },
+                      "start": {
+                        "type": "number"
+                      },
+                      "aggregations": {
+                        "type": "object",
+                        "properties": {}
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Solicitud incorrecta",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/dump/{filename}": {
+      "get": {
+        "tags": [
+          "Series de Tiempo"
+        ],
+        "summary": "Descargar archivos",
+        "description": "Descargar metadatos, fuentes o últimos valores de todas las series de tiempo en formato csv, xlsx o sql.",
+        "operationId": "dump",
+        "parameters": [
+          {
+            "name": "filename",
+            "in": "path",
+            "description": "Nombre del archivo que se desea descargar",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "series-tiempo-csv.zip",
+                "series-tiempo-valores-csv.zip",
+                "series-tiempo-metadatos.csv",
+                "series-tiempo-fuentes.csv",
+                "series-tiempo.xlsx",
+                "series-tiempo-valores.xlsx",
+                "series-tiempo-metadatos.xlsx",
+                "series-tiempo-fuentes.xlsx",
+                "series-tiempo-sqlite.zip",
+                "series-tiempo-valores-dta.zip",
+                "series-tiempo-metadatos.dta",
+                "series-tiempo-fuentes.dta"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "La consulta se ejecutó exitosamente",
+            "content": {}
+          },
+          "400": {
+            "description": "Solicitud incorrecta",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/dump/{catalog_id}/{filename}": {
+      "get": {
+        "tags": [
+          "Series de Tiempo"
+        ],
+        "summary": "Descargar archivos por catálogo",
+        "description": "Descargar metadatos, fuentes o últimos valores de series de tiempo de un catálogo específico en formato csv, xlsx o sql.",
+        "operationId": "dump_catalogo",
+        "parameters": [
+          {
+            "name": "catalog_id",
+            "in": "path",
+            "description": "Catalogo del que se desea descargar los archivos",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "sspmm",
+                "snic",
+                "obras",
+                "turismo",
+                "bcra",
+                "justicia",
+                "jgm",
+                "agroindustria",
+                "smn",
+                "salud",
+                "energia",
+                "defensa",
+                "cultura",
+                "otros",
+                "transporte"
+              ]
+            }
+          },
+          {
+            "name": "filename",
+            "in": "path",
+            "description": "Nombre del archivo que se desea descargar",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "series-tiempo-csv.zip",
+                "series-tiempo-valores-csv.zip",
+                "series-tiempo-metadatos.csv",
+                "series-tiempo-fuentes.csv",
+                "series-tiempo.xlsx",
+                "series-tiempo-valores.xlsx",
+                "series-tiempo-metadatos.xlsx",
+                "series-tiempo-fuentes.xlsx",
+                "series-tiempo-sqlite.zip",
+                "series-tiempo-valores-dta.zip",
+                "series-tiempo-metadatos.dta",
+                "series-tiempo-fuentes.dta"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "La consulta se ejecutó exitosamente",
+            "content": {}
+          },
+          "400": {
+            "description": "Solicitud incorrecta",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/validate/": {
+      "post": {
+        "tags": [
+          "Series de Tiempo"
+        ],
+        "summary": "Validar series de tiempo",
+        "description": "Verificar que las series de tiempo de organismos de la APN no tengan problemas de formato u otros que impidan su procesamiento por la API.",
+        "operationId": "validate",
+        "parameters": [
+          {
+            "name": "catalog_url",
+            "in": "query",
+            "description": "Proporcionar el enlace del catálogo publicado del organismo.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "distribution_id",
+            "in": "query",
+            "description": "Proporcionar el ID de la distribución que contiene la serie a verificar.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "catalog_format",
+            "in": "query",
+            "description": "Especificar la extensión del formato del catálogo.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "xlsx"
+              ],
+              "example": "json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "La consulta se ejecutó exitosamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "catalog_url": {
+                        "type": "string"
+                      },
+                      "distribution_id": {
+                        "type": "string"
+                      },
+                      "found_issues": {
+                        "type": "number"
+                      },
+                      "detail": {
+                        "type": "object",
+                        "properties": {}
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Solicitud incorrecta",
+            "content": {}
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "SeriesResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {}
+          },
+          "meta": {
+            "type": "object",
+            "properties": {}
+          },
+          "params": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      },
+      "SearchResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {}
+          },
+          "count": {
+            "type": "number"
+          },
+          "limit": {
+            "type": "number"
+          },
+          "start": {
+            "type": "number"
+          },
+          "aggregations": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      },
+      "ValidateResponse": {
+        "type": "object",
+        "properties": {
+          "catalog_url": {
+            "type": "string"
+          },
+          "distribution_id": {
+            "type": "string"
+          },
+          "found_issues": {
+            "type": "number"
+          },
+          "detail": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      }
+    }
+  },
+  "x-original-swagger-version": "2.0"
+}
