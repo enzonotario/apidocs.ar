@@ -2,7 +2,7 @@
   "type": "module",
   "private": true,
   "devDependencies": {
-    "@apidocs.ar/core": "0.0.3",
+    "@apidocs.ar/core": "0.0.4",
     "autoprefixer": "^10.4.21",
     "chart.js": "^4.4.9",
     "chartjs-plugin-datalabels": "^2.2.0",

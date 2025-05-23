@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@apidocs.ar/core':
+        specifier: 0.0.4
+        version: 0.0.4(vitepress@1.6.3(@algolia/client-search@5.25.0)(postcss@8.5.3)(search-insights@2.17.3)(typescript@5.8.3))(vue@3.5.14(typescript@5.8.3))
       vitepress:
         specifier: latest
         version: 1.6.3(@algolia/client-search@5.25.0)(postcss@8.5.3)(search-insights@2.17.3)(typescript@5.8.3)
@@ -111,6 +114,12 @@ packages:
   '@alloc/quick-lru@5.2.0':
     resolution: {integrity: sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==}
     engines: {node: '>=10'}
+
+  '@apidocs.ar/core@0.0.4':
+    resolution: {integrity: sha512-n6XN+QLau1EdsmzaLpoUQqghrNgQK1Cqt09LkHaB/+Aveqoqei9N2mAZCvFhe39IJauqBjxQctFu64qUvIov2g==}
+    peerDependencies:
+      vitepress: ^1.0.0
+      vue: ^3.3.0
 
   '@babel/helper-string-parser@7.27.1':
     resolution: {integrity: sha512-qMlSxKbpRlAridDExk92nSobyDdpPijUq2DW6oDnUqd0iOGxmQjyqhMIihI9+zv4LPyZdRje2cavWPbCbWm3eA==}
@@ -1544,6 +1553,11 @@ snapshots:
       '@algolia/client-common': 5.25.0
 
   '@alloc/quick-lru@5.2.0': {}
+
+  '@apidocs.ar/core@0.0.4(vitepress@1.6.3(@algolia/client-search@5.25.0)(postcss@8.5.3)(search-insights@2.17.3)(typescript@5.8.3))(vue@3.5.14(typescript@5.8.3))':
+    dependencies:
+      vitepress: 1.6.3(@algolia/client-search@5.25.0)(postcss@8.5.3)(search-insights@2.17.3)(typescript@5.8.3)
+      vue: 3.5.14(typescript@5.8.3)
 
   '@babel/helper-string-parser@7.27.1': {}
 
