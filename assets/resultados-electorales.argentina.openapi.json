@@ -1,0 +1,313 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "API de Publicación de Resultados Electorales",
+    "description": "API de Publicación de Resultados Electorales de Elecciones Nacionales, desde 2011. Para su uso puede requerirse autenticación mediante token del tipo JWT.",
+    "termsOfService": "https://resultados.mininterior.gob.ar/tos.html",
+    "contact": {
+      "email": "soportedine@mininterior.gob.ar",
+      "name": "Soporte DINE",
+      "url": "https://www.argentina.gob.ar/interior/dine"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version": "1.0.1"
+  },
+  "externalDocs": {
+    "description": "Más información acerca de esta API",
+    "url": "https://resultados.mininterior.gob.ar/desarrollo"
+  },
+  "servers": [
+    {
+      "url": "https://resultados.mininterior.gob.ar/api"
+    }
+  ],
+  "tags": [
+    {
+      "name": "resultados",
+      "description": "Valores Electorales Totalizados"
+    }
+  ],
+  "paths": {
+    "/resultados/getResultados": {
+      "get": {
+        "tags": [
+          "resultados"
+        ],
+        "summary": "Resultados Electorales",
+        "description": "Devuelve los resultados electorales totalizados de una elección, según el año, tipo de recuento, tipo de elección y categoría electoral solicitados. Permite filtrar por distrito, sección provincial, sección, circuito y mesa.",
+        "operationId": "getResultados",
+        "parameters": [
+          {
+            "name": "anioEleccion",
+            "in": "query",
+            "description": "Año del ciclo electoral",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "example": "2023",
+            "schema": {
+              "type": "string",
+              "format": "year"
+            }
+          },
+          {
+            "name": "tipoRecuento",
+            "in": "query",
+            "description": "Tipo de recuento que se quiere consultar. Valores posibles:\n- `1`: Recuento Provisional",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "example": "1",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "1"
+              ]
+            }
+          },
+          {
+            "name": "tipoEleccion",
+            "in": "query",
+            "description": "Tipo de elección a consultar. Valores posibles:\n- `1`: PASO\n- `2`: Elecciones Generales\n- `3`: Segunda Vuelta",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "example": "1",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "1",
+                "2",
+                "3"
+              ]
+            }
+          },
+          {
+            "name": "categoriaId",
+            "in": "query",
+            "description": "Id de la categoría electoral para la cual se están solicitando datos.",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "example": 1,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "distritoId",
+            "in": "query",
+            "description": "Id del distrito",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "example": "1",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "seccionProvincialId",
+            "in": "query",
+            "description": "Id de sección provincial",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "example": "0",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "seccionId",
+            "in": "query",
+            "description": "Id de Sección, Departamento o Comuna.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "example": "3",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "circuitoId",
+            "in": "query",
+            "description": "Id del Circuito",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "example": "000039",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mesaId",
+            "in": "query",
+            "description": "Id de la Mesa",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "example": "1244",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValorElectoralTotalizado"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID value",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "bearer_auth": [
+              "read"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ValorElectoralTotalizado": {
+        "type": "object",
+        "properties": {
+          "fechaTotalizacion": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "estadoRecuento": {
+            "$ref": "#/components/schemas/EstadoRecuento"
+          },
+          "valoresTotalizadosPositivos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ValoresAgrupacion"
+            }
+          },
+          "valoresTotalizadosOtros": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ValoresTotalizadosOtros"
+            }
+          }
+        }
+      },
+      "ValoresAgrupacion": {
+        "type": "object",
+        "properties": {
+          "idAgrupacion": {
+            "type": "string",
+            "description": "Id de la agrupación politica. Este Id es un código interno único generado en el Sistema de Recuento, que podría no coincidir con el código del telegrama."
+          },
+          "idAgrupacionTelegrama": {
+            "type": "string",
+            "description": "Id de la agrupacion politíca en el Telegrama. Este código puede no ser único para todo el pais."
+          },
+          "nombreAgrupacion": {
+            "type": "string"
+          },
+          "urlLogo": {
+            "type": "string"
+          },
+          "votos": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "votosPorcentaje": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "description": "Valores obtenidos por la agrupación política."
+      },
+      "ValoresTotalizadosOtros": {
+        "type": "object",
+        "properties": {
+          "votosNulos": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "votosNulosPorcentaje": {
+            "type": "number",
+            "format": "double"
+          },
+          "votosEnBlanco": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "votosEnBlancoPorcentaje": {
+            "type": "number",
+            "format": "double"
+          },
+          "votosRecurridosComandoImpugnados": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "votosRecurridosComandoImpugnadosPorcentaje": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "EstadoRecuento": {
+        "type": "object",
+        "properties": {
+          "mesasEsperadas": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "mesasTotalizadas": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "mesasTotalizadasPorcentaje": {
+            "type": "number",
+            "description": "Porcentaje de totalización de mesas sobre el total del mesas esperadas.",
+            "format": "double"
+          },
+          "cantidadElectores": {
+            "type": "integer",
+            "description": "Cantidad de electores sobre mesas totalizadas.",
+            "format": "int64"
+          },
+          "cantidadVotantes": {
+            "type": "integer",
+            "description": "Cantidad de votantes sobre mesas totalizadas.",
+            "format": "int64"
+          },
+          "participacionPorcentaje": {
+            "type": "number",
+            "description": "Porcentaje de participación sobre mesas totalizadas.",
+            "format": "double"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearer_auth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}

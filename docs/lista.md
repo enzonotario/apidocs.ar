@@ -17,3 +17,4 @@ Lista de documentaciones de APIs públicas.
 
 - [API del Servicio de Normalización de Datos Geográficos de Argentina](https://georef.argentina.apidocs.ar)
 - [API de Series de Tiempo de la República Argentina](https://series-tiempo.argentina.apidocs.ar)
+- [API de Resultados Electorales de la República Argentina](https://resultados-electorales.argentina.apidocs.ar)

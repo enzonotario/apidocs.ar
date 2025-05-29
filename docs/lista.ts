@@ -72,5 +72,15 @@ export const sites = [
       "Argentina"
     ],
     "autogenerate": false
+  },
+  {
+    "name": "Resultados Electorales",
+    "description": "API de Resultados Electorales de la República Argentina",
+    "subdomain": "resultados-electorales.argentina",
+    "baseDir": "/sites/argentina/resultados-electorales",
+    "specUrl": "/home/enzo/PhpstormProjects/apidocs.ar/assets/resultados-electorales.argentina.openapi.json",
+    "tags": [
+      "Argentina"
+    ]
   }
 ]
