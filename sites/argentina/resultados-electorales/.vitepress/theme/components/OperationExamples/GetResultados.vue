@@ -386,8 +386,8 @@ watch([anioEleccion, tipoRecuento, tipoEleccion, categoriaId, distritoId, seccio
         <tbody>
           <tr v-for="agrupacion in resultados.valoresTotalizadosPositivos" :key="agrupacion.idAgrupacion">
             <td>{{ agrupacion.nombreAgrupacion }}</td>
-            <td class="text-right">{{ agrupacion.votos?.toLocaleString() }}</td>
-            <td class="text-right">{{ agrupacion.votosPorcentaje?.toFixed(1) }}%</td>
+            <td class="text-right font-mono">{{ agrupacion.votos?.toLocaleString() }}</td>
+            <td class="text-right font-mono">{{ agrupacion.votosPorcentaje?.toFixed(1) }}%</td>
           </tr>
         </tbody>
       </table>
@@ -410,18 +410,18 @@ watch([anioEleccion, tipoRecuento, tipoEleccion, categoriaId, distritoId, seccio
             <tbody>
               <tr>
                 <td>Votos Nulos</td>
-                <td class="text-right">{{ resultados.valoresTotalizadosOtros.votosNulos.toLocaleString() }}</td>
-                <td class="text-right">{{ resultados.valoresTotalizadosOtros?.votosNulosPorcentaje?.toFixed(1) }}%</td>
+                <td class="text-right font-mono">{{ resultados.valoresTotalizadosOtros.votosNulos.toLocaleString() }}</td>
+                <td class="text-right font-mono">{{ resultados.valoresTotalizadosOtros?.votosNulosPorcentaje?.toFixed(1) }}%</td>
               </tr>
               <tr>
                 <td>Votos en Blanco</td>
-                <td class="text-right">{{ resultados.valoresTotalizadosOtros?.votosEnBlanco?.toLocaleString() }}</td>
-                <td class="text-right">{{ resultados.valoresTotalizadosOtros?.votosEnBlancoPorcentaje?.toFixed(1) }}%</td>
+                <td class="text-right font-mono">{{ resultados.valoresTotalizadosOtros?.votosEnBlanco?.toLocaleString() }}</td>
+                <td class="text-right font-mono">{{ resultados.valoresTotalizadosOtros?.votosEnBlancoPorcentaje?.toFixed(1) }}%</td>
               </tr>
               <tr>
                 <td>Votos Recurridos/Impugnados</td>
-                <td class="text-right">{{ resultados.valoresTotalizadosOtros?.votosRecurridosComandoImpugnados?.toLocaleString() }}</td>
-                <td class="text-right">{{ resultados.valoresTotalizadosOtros?.votosRecurridosComandoImpugnadosPorcentaje?.toFixed(1) }}%</td>
+                <td class="text-right font-mono">{{ resultados.valoresTotalizadosOtros?.votosRecurridosComandoImpugnados?.toLocaleString() }}</td>
+                <td class="text-right font-mono">{{ resultados.valoresTotalizadosOtros?.votosRecurridosComandoImpugnadosPorcentaje?.toFixed(1) }}%</td>
               </tr>
             </tbody>
           </table>
