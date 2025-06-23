@@ -4,13 +4,16 @@ import fs from 'fs-extra'
 import { sites } from './sites.js'
 
 export async function main(): Promise<number> {
-  for (const site of sites.filter(site => site.autogenerate === undefined || site.autogenerate)) {
-    await cleanTemplateDir(site)
-    await copyTemplateDir(site)
-    await updateConfig(site)
-    await updateIndex(site)
-    await updateNetlifyToml(site)
-    await createSpec(site)
+  for (const site of sites) {
+    if (site.autogenerate === undefined || site.autogenerate) {
+      await cleanTemplateDir(site)
+      await copyTemplateDir(site)
+      await updateConfig(site)
+      await updateIndex(site)
+      await updateNetlifyToml(site)
+      await createSpec(site)
+    }
+
     await transformSpec(site)
   }
 
