@@ -13,7 +13,7 @@
     "site:dev": "node ./src/site-dev.js"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^4.15.0",
+    "@antfu/eslint-config": "^4.16.1",
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^22.15.32",
     "autoprefixer": "^10.4.21",

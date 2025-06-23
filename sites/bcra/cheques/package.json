@@ -4,7 +4,7 @@
   "devDependencies": {
     "@apidocs.ar/core": "0.0.4",
     "autoprefixer": "^10.4.21",
-    "postcss": "^8.5.3",
+    "postcss": "^8.5.6",
     "tailwindcss": "^3.4.17",
     "vitepress": "latest",
     "vitepress-openapi": "latest"
