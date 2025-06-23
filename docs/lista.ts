@@ -81,6 +81,18 @@ export const sites = [
     "specUrl": "/home/enzo/PhpstormProjects/apidocs.ar/assets/resultados-electorales.argentina.openapi.json",
     "tags": [
       "Argentina"
-    ]
+    ],
+    "autogenerate": false
+  },
+  {
+    "name": "Presupuesto Abierto",
+    "description": "API de Presupuesto Abierto de la República Argentina",
+    "subdomain": "presupuesto-abierto.argentina",
+    "baseDir": "/sites/argentina/presupuesto-abierto",
+    "specUrl": "/home/enzo/PhpstormProjects/apidocs.ar/assets/presupuesto-abierto.argentina.openapi.json",
+    "tags": [
+      "Argentina"
+    ],
+    "autogenerate": false
   }
 ]

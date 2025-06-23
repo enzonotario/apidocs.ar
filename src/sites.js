@@ -70,4 +70,13 @@ export const sites = [
     tags: ['Argentina'],
     autogenerate: false,
   },
+  {
+    name: 'Presupuesto Abierto',
+    description: 'API de Presupuesto Abierto de la República Argentina',
+    subdomain: 'presupuesto-abierto.argentina',
+    baseDir: '/sites/argentina/presupuesto-abierto',
+    specUrl: fileURLToPath(new URL('../assets/presupuesto-abierto.argentina.openapi.json', import.meta.url)),
+    tags: ['Argentina'],
+    autogenerate: false,
+  },
 ]

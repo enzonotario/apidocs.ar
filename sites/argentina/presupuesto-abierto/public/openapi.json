@@ -1,0 +1,743 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API de Presupuesto Abierto",
+    "description": "API para acceder a datos de recursos, gastos y programación y ejecución física del presupuesto nacional de Argentina.\n\n ## Solicitud de Token de Acceso\n\nPara obtener un token de acceso, dirigete a [https://www.presupuestoabierto.gob.ar/sici/api-pac](https://www.presupuestoabierto.gob.ar/sici/api-pac)",
+    "version": "1.0.0",
+    "contact": {
+      "url": "https://www.presupuestoabierto.gob.ar/api/"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://www.presupuestoabierto.gob.ar/api/v1",
+      "description": "Servidor de producción"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "paths": {
+    "/credito": {
+      "post": {
+        "summary": "Consulta de crédito del presupuesto",
+        "description": "Permite acceder a datos de crédito del presupuesto nacional en sus diferentes etapas",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "example": "Crédito vigente por jurisdicción"
+                  },
+                  "columns": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "impacto_presupuestario_fecha",
+                        "impacto_presupuestario_anio",
+                        "impacto_presupuestario_mes",
+                        "ejercicio_presupuestario",
+                        "sector_id",
+                        "sector_desc",
+                        "subsector_id",
+                        "subsector_desc",
+                        "caracter_id",
+                        "caracter_desc",
+                        "jurisdiccion_id",
+                        "jurisdiccion_desc",
+                        "subjurisdiccion_id",
+                        "subjurisdiccion_desc",
+                        "entidad_id",
+                        "entidad_desc",
+                        "servicio_id",
+                        "servicio_desc",
+                        "programa_id",
+                        "programa_desc",
+                        "subprograma_id",
+                        "subprograma_desc",
+                        "proyecto_id",
+                        "proyecto_desc",
+                        "actividad_id",
+                        "actividad_desc",
+                        "obra_id",
+                        "obra_desc"
+                      ]
+                    },
+                    "example": "impacto_presupuestario_fecha"
+                  },
+                  "filters": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              },
+              "examples": {
+                "Crédito vigente por finalidad función": {
+                  "summary": "Ejemplo de solicitud",
+                  "value": {
+                    "title": "Crédito vigente por finalidad función",
+                    "columns": [
+                      "finalidad_id",
+                      "finalidad_desc",
+                      "funcion_id",
+                      "funcion_desc",
+                      "credito_vigente"
+                    ]
+                  }
+                },
+                "Crédito vigente para 2024 y 2025 por programa": {
+                  "summary": "Ejemplo de solicitud",
+                  "value": {
+                    "title": "Crédito vigente para 2024 y 2025 por programa",
+                    "ejercicios": [
+                      2024,
+                      2025
+                    ],
+                    "columns": [
+                      "impacto_presupuestario_anio",
+                      "entidad_id",
+                      "entidad_desc",
+                      "programa_id",
+                      "programa_desc",
+                      "credito_vigente"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "description": "Formato de respuesta",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "csv",
+                "zip"
+              ],
+              "default": "csv"
+            },
+            "example": "json"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Respuesta exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Solicitud incorrecta - Error en los parámetros"
+          },
+          "401": {
+            "description": "No autorizado - Token de acceso inválido"
+          }
+        },
+        "operationId": "post-credito",
+        "tags": [
+          "Default"
+        ]
+      }
+    },
+    "/recurso": {
+      "post": {
+        "summary": "Consulta de recursos del presupuesto",
+        "description": "Permite acceder a datos de recursos del presupuesto nacional",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "example": "Recursos por tipo"
+                  },
+                  "columns": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "impacto_presupuestario_fecha",
+                        "impacto_presupuestario_anio",
+                        "impacto_presupuestario_mes",
+                        "ejercicio_presupuestario",
+                        "sector_id",
+                        "sector_desc",
+                        "subsector_id",
+                        "subsector_desc",
+                        "caracter_id",
+                        "caracter_desc",
+                        "jurisdiccion_id",
+                        "jurisdiccion_desc",
+                        "subjurisdiccion_id",
+                        "subjurisdiccion_desc",
+                        "entidad_id",
+                        "entidad_desc",
+                        "servicio_id",
+                        "servicio_desc",
+                        "tipo_id",
+                        "tipo_desc",
+                        "clase_id",
+                        "clase_desc",
+                        "concepto_id",
+                        "concepto_desc",
+                        "subconcepto_id",
+                        "subconcepto_desc",
+                        "fuente_financiamiento_id",
+                        "fuente_financiamiento_desc"
+                      ]
+                    }
+                  },
+                  "filters": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              },
+              "examples": {
+                "Recursos percibidos por rubro en 2024, ordenados en forma descendente": {
+                  "summary": "Ejemplo de solicitud",
+                  "value": {
+                    "ejercicios": [
+                      2024
+                    ],
+                    "columns": [
+                      "tipo_desc",
+                      "clase_desc",
+                      "concepto_desc",
+                      "subconcepto_desc",
+                      "recurso_vigente",
+                      "recurso_ingresado_percibido"
+                    ],
+                    "order": [
+                      {
+                        "column": "recurso_ingresado_percibido",
+                        "order": "desc"
+                      }
+                    ]
+                  }
+                },
+                "Recurso vigente percibido de tipo Contribuciones": {
+                  "summary": "Ejemplo de solicitud",
+                  "value": {
+                    "columns": [
+                      "tipo_desc",
+                      "clase_desc",
+                      "concepto_desc",
+                      "subconcepto_desc",
+                      "recurso_ingresado_percibido"
+                    ],
+                    "filters": [
+                      {
+                        "column": "tipo_desc",
+                        "operator": "like",
+                        "value": "%Contribuciones%"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "description": "Formato de respuesta",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "csv",
+                "zip"
+              ],
+              "default": "csv"
+            },
+            "example": "json"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Respuesta exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Solicitud incorrecta - Error en los parámetros"
+          },
+          "401": {
+            "description": "No autorizado - Token de acceso inválido"
+          }
+        },
+        "operationId": "post-recurso",
+        "tags": [
+          "Default"
+        ]
+      }
+    },
+    "/pef": {
+      "post": {
+        "summary": "Consulta de programación y ejecución física",
+        "description": "Permite acceder a datos de la programación y ejecución física del presupuesto nacional",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "example": "Programación física por trimestre"
+                  },
+                  "columns": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "ejercicio_presupuestario",
+                        "trimestre",
+                        "finalidad_id",
+                        "finalidad_desc",
+                        "funcion_id",
+                        "funcion_desc",
+                        "sector_id",
+                        "sector_desc",
+                        "subsector_id",
+                        "subsector_desc",
+                        "caracter_id",
+                        "caracter_desc",
+                        "jurisdiccion_id",
+                        "jurisdiccion_desc",
+                        "subjurisdiccion_id",
+                        "subjurisdiccion_desc",
+                        "entidad_id",
+                        "entidad_desc",
+                        "servicio_id",
+                        "servicio_desc",
+                        "programa_id",
+                        "programa_desc",
+                        "subprograma_id",
+                        "subprograma_desc",
+                        "proyecto_id",
+                        "proyecto_desc",
+                        "actividad_id",
+                        "actividad_desc"
+                      ]
+                    }
+                  },
+                  "filters": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              },
+              "examples": {
+                "Programación y ejecución física del primer trimestre": {
+                  "summary": "Ejemplo de solicitud",
+                  "value": {
+                    "title": "Programación y ejecución física del primer trimestre",
+                    "columns": [
+                      "ejercicio_presupuestario",
+                      "trimestre",
+                      "jurisdiccion_id",
+                      "jurisdiccion_desc",
+                      "subjurisdiccion_id",
+                      "subjurisdiccion_desc",
+                      "entidad_id",
+                      "entidad_desc",
+                      "servicio_id",
+                      "servicio_desc",
+                      "programa_id",
+                      "programa_desc",
+                      "subprograma_id",
+                      "subprograma_desc",
+                      "proyecto_id",
+                      "proyecto_desc",
+                      "actividad_id",
+                      "actividad_desc",
+                      "obra_id",
+                      "obra_desc",
+                      "finalidad_id",
+                      "finalidad_desc",
+                      "funcion_id",
+                      "funcion_desc",
+                      "tipo_medicion_fisica",
+                      "medicion_fisica_id",
+                      "medicion_fisica_desc",
+                      "unidad_medida_id",
+                      "unidad_medida_desc",
+                      "ubicacion_geografica_id",
+                      "ubicacion_geografica_desc",
+                      "totalizador_avance_fisico",
+                      "programacion_inicial_DA",
+                      "programacion_inicial_ajustada",
+                      "ejecutado_vigente_trim",
+                      "ejecutado_acumulado_trim",
+                      "causa_desvio",
+                      "causa_desvio_detalle",
+                      "ultima_actualizacion_fecha"
+                    ],
+                    "ejercicios": [
+                      2025
+                    ],
+                    "filters": [
+                      {
+                        "column": "trimestre",
+                        "operator": "equal",
+                        "value": "1"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "description": "Formato de respuesta",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "csv",
+                "zip"
+              ],
+              "default": "csv"
+            },
+            "example": "json"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Respuesta exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Solicitud incorrecta - Error en los parámetros"
+          },
+          "401": {
+            "description": "No autorizado - Token de acceso inválido"
+          }
+        },
+        "operationId": "post-pef",
+        "tags": [
+          "Default"
+        ]
+      }
+    },
+    "/transversal_financiero": {
+      "post": {
+        "summary": "Consulta de análisis transversal financiero",
+        "description": "Permite acceder a datos de análisis transversal financiero del presupuesto nacional",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "example": "Análisis transversal financiero"
+                  },
+                  "columns": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "filters": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              },
+              "examples": {
+                "Análisis transversal financiero": {
+                  "summary": "Ejemplo de solicitud",
+                  "value": {
+                    "title": "Análisis transversal financiero con etiqueta de Niñez y Adolescencia",
+                    "columns": [
+                      "etiqueta_id",
+                      "etiqueta_desc",
+                      "credito_inicial_ponderado",
+                      "credito_vigente_ponderado",
+                      "credito_ejecutado_ponderado"
+                    ],
+                    "ejercicios": [
+                      2025
+                    ],
+                    "filters": [
+                      {
+                        "column": "etiqueta_id",
+                        "operator": "equal",
+                        "value": "02.00.00.00"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "description": "Formato de respuesta",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "csv",
+                "zip"
+              ],
+              "default": "csv"
+            },
+            "example": "json"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Respuesta exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Solicitud incorrecta - Error en los parámetros"
+          },
+          "401": {
+            "description": "No autorizado - Token de acceso inválido"
+          }
+        },
+        "operationId": "post-transversal_financiero",
+        "tags": [
+          "Default"
+        ]
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "description": "Token de acceso JWT para autenticación"
+      }
+    },
+    "schemas": {
+      "CreditoSchema": {
+        "type": "object",
+        "properties": {
+          "impacto_presupuestario_fecha": {
+            "type": "string",
+            "format": "date",
+            "description": "Fecha completa en la cual impactó el Crédito."
+          },
+          "impacto_presupuestario_anio": {
+            "type": "integer",
+            "description": "Año calendario en el cual impactó el Crédito."
+          },
+          "impacto_presupuestario_mes": {
+            "type": "integer",
+            "description": "Número del mes en el cual impactó el Crédito."
+          },
+          "ejercicio_presupuestario": {
+            "type": "integer",
+            "description": "Ejercicio Presupuestario."
+          },
+          "sector_id": {
+            "type": "integer",
+            "description": "Código del Sector del Sector Institucional."
+          },
+          "sector_desc": {
+            "type": "string",
+            "description": "Descripción del Sector del Sector Institucional."
+          },
+          "subsector_id": {
+            "type": "integer",
+            "description": "Código del Subsector del Sector Institucional."
+          },
+          "subsector_desc": {
+            "type": "string",
+            "description": "Descripción del Subsector del Sector Institucional."
+          },
+          "caracter_id": {
+            "type": "integer",
+            "description": "Código del Carácter del Sector Institucional."
+          },
+          "caracter_desc": {
+            "type": "string",
+            "description": "Descripción del Carácter del Sector Institucional."
+          },
+          "jurisdiccion_id": {
+            "type": "integer",
+            "description": "Código de la Jurisdicción de la Institución."
+          },
+          "jurisdiccion_desc": {
+            "type": "string",
+            "description": "Descripción de la Jurisdicción de la Institución."
+          }
+        }
+      },
+      "RecursoSchema": {
+        "type": "object",
+        "properties": {
+          "impacto_presupuestario_fecha": {
+            "type": "string",
+            "format": "date",
+            "description": "Fecha completa en el cual impactó el Recurso."
+          },
+          "impacto_presupuestario_anio": {
+            "type": "integer",
+            "description": "Año calendario en el cual impactó el Recurso."
+          },
+          "impacto_presupuestario_mes": {
+            "type": "integer",
+            "description": "Número del mes en el cual impactó el Recurso."
+          },
+          "ejercicio_presupuestario": {
+            "type": "integer",
+            "description": "Ejercicio Presupuestario Vigente del Recurso."
+          },
+          "sector_id": {
+            "type": "integer",
+            "description": "Código del Sector del Sector Institucional."
+          },
+          "sector_desc": {
+            "type": "string",
+            "description": "Descripción del Sector del Sector Institucional."
+          },
+          "subsector_id": {
+            "type": "integer",
+            "description": "Código del Subsector del Sector Institucional."
+          },
+          "subsector_desc": {
+            "type": "string",
+            "description": "Descripción del Subsector del Sector Institucional."
+          },
+          "caracter_id": {
+            "type": "integer",
+            "description": "Código del Carácter del Sector Institucional."
+          },
+          "caracter_desc": {
+            "type": "string",
+            "description": "Descripción del Carácter del Sector Institucional."
+          },
+          "jurisdiccion_id": {
+            "type": "integer",
+            "description": "Código de la Jurisdicción de la Institución."
+          },
+          "jurisdiccion_desc": {
+            "type": "string",
+            "description": "Descripción de la Jurisdicción de la Institución."
+          }
+        }
+      },
+      "PEFSchema": {
+        "type": "object",
+        "properties": {
+          "ejercicio_presupuestario": {
+            "type": "integer",
+            "description": "Ejercicio Presupuestario"
+          },
+          "trimestre": {
+            "type": "integer",
+            "description": "Número de Trimestre"
+          },
+          "finalidad_id": {
+            "type": "integer",
+            "description": "Código de la Finalidad."
+          },
+          "finalidad_desc": {
+            "type": "string",
+            "description": "Descripción de la Finalidad."
+          },
+          "funcion_id": {
+            "type": "integer",
+            "description": "Código de la Función."
+          },
+          "funcion_desc": {
+            "type": "string",
+            "description": "Descripción de la Función."
+          },
+          "sector_id": {
+            "type": "integer",
+            "description": "Código del Sector del Agrupamiento o Sector Institucional."
+          },
+          "sector_desc": {
+            "type": "string",
+            "description": "Descripción del Sector del Agrupamiento o Sector Institucional."
+          },
+          "subsector_id": {
+            "type": "integer",
+            "description": "Código del Subsector del Agrupamiento o Sector Institucional."
+          },
+          "subsector_desc": {
+            "type": "string",
+            "description": "Descripción del Subsector del Agrupamiento o Sector Institucional."
+          },
+          "caracter_id": {
+            "type": "integer",
+            "description": "Código del Carácter del Sector Institucional."
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Default",
+      "description": ""
+    }
+  ],
+  "externalDocs": {}
+}
