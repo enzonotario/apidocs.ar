@@ -569,8 +569,7 @@
       "bearerAuth": {
         "type": "http",
         "scheme": "bearer",
-        "bearerFormat": "JWT",
-        "description": "Token de acceso JWT para autenticación"
+        "description": "Token de acceso para autenticación"
       }
     },
     "schemas": {
