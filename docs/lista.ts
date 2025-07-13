@@ -96,7 +96,7 @@ export const sites = [
     "autogenerate": false
   },
   {
-    "name": "Ministeria de Cultura",
+    "name": "Ministerio de Cultura",
     "description": "API del Ministerio de Cultura de la República Argentina",
     "subdomain": "cultura.argentina",
     "baseDir": "/sites/argentina/cultura",
