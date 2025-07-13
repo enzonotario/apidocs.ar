@@ -19,3 +19,4 @@ Lista de documentaciones de APIs públicas.
 - [API de Series de Tiempo de la República Argentina](https://series-tiempo.argentina.apidocs.ar)
 - [API de Resultados Electorales de la República Argentina](https://resultados-electorales.argentina.apidocs.ar)
 - [API de Presupuesto Abierto de la República Argentina](https://presupuesto-abierto.argentina.apidocs.ar)
+- [API del Ministerio de Cultura de la República Argentina](https://cultura.argentina.apidocs.ar)

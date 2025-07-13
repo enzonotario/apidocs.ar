@@ -94,5 +94,16 @@ export const sites = [
       "Argentina"
     ],
     "autogenerate": false
+  },
+  {
+    "name": "Ministeria de Cultura",
+    "description": "API del Ministerio de Cultura de la República Argentina",
+    "subdomain": "cultura.argentina",
+    "baseDir": "/sites/argentina/cultura",
+    "specUrl": "/home/enzo/PhpstormProjects/apidocs.ar/assets/cultura.argentina.openapi.json",
+    "tags": [
+      "Argentina"
+    ],
+    "autogenerate": false
   }
 ]

@@ -79,4 +79,13 @@ export const sites = [
     tags: ['Argentina'],
     autogenerate: false,
   },
+  {
+    name: 'Ministeria de Cultura',
+    description: 'API del Ministerio de Cultura de la República Argentina',
+    subdomain: 'cultura.argentina',
+    baseDir: '/sites/argentina/cultura',
+    specUrl: fileURLToPath(new URL('../assets/cultura.argentina.openapi.json', import.meta.url)),
+    tags: ['Argentina'],
+    autogenerate: false,
+  },
 ]

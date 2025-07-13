@@ -1,0 +1,538 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API del Ministerio de Cultura de Argentina",
+    "version": "2.0.0",
+    "description": "API para acceder a datos del Ministerio de Cultura de Argentina."
+  },
+  "servers": [
+    {
+      "url": "https://www.cultura.gob.ar/api/v2.0",
+      "description": "Servidor principal de la API"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Obtener la lista de endpoints disponibles",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "query",
+            "description": "Formato de la respuesta",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": ["json"],
+              "default": "json",
+              "example": "json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de endpoints",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "usuarios": {
+                      "type": "string",
+                      "format": "url",
+                      "example": "https://www.cultura.gob.ar/api/v2.0/usuarios/"
+                    },
+                    "organismos": {
+                      "type": "string",
+                      "format": "url",
+                      "example": "https://www.cultura.gob.ar/api/v2.0/organismos/"
+                    },
+                    "programas": {
+                      "type": "string",
+                      "format": "url",
+                      "example": "https://www.cultura.gob.ar/api/v2.0/programas/"
+                    },
+                    "museos": {
+                      "type": "string",
+                      "format": "url",
+                      "example": "https://www.cultura.gob.ar/api/v2.0/museos/"
+                    },
+                    "institutos": {
+                      "type": "string",
+                      "format": "url",
+                      "example": "https://www.cultura.gob.ar/api/v2.0/institutos/"
+                    },
+                    "tramites": {
+                      "type": "string",
+                      "format": "url",
+                      "example": "https://www.cultura.gob.ar/api/v2.0/tramites/"
+                    },
+                    "convocatorias": {
+                      "type": "string",
+                      "format": "url",
+                      "example": "https://www.cultura.gob.ar/api/v2.0/convocatorias/"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usuarios": {
+      "get": {
+        "summary": "Obtener la lista de usuarios",
+        "security": [
+          {
+            "TokenAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "format",
+            "in": "query",
+            "description": "Formato de la respuesta",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": ["json"],
+              "default": "json",
+              "example": "json"
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "No autenticado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "detail": {
+                      "type": "string",
+                      "example": "Las credenciales de autenticación no se proveyeron."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/organismos": {
+      "get": {
+        "summary": "Obtener la lista de organismos",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "query",
+            "description": "Formato de la respuesta",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": ["json"],
+              "default": "json",
+              "example": "json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de organismos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "count": {
+                      "type": "integer"
+                    },
+                    "next": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "previous": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer"
+                          },
+                          "url": {
+                            "type": "string",
+                            "format": "url"
+                          },
+                          "nombre": {
+                            "type": "string"
+                          },
+                          "descripcion": {
+                            "type": "string"
+                          },
+                          "web": {
+                            "type": "string",
+                            "format": "url"
+                          },
+                          "email": {
+                            "type": "string",
+                            "format": "email"
+                          },
+                          "telefono": {
+                            "type": "string"
+                          },
+                          "direccion": {
+                            "type": "string"
+                          },
+                          "localidad": {
+                            "type": "string"
+                          },
+                          "provincia": {
+                            "type": "string"
+                          },
+                          "latitud": {
+                            "type": "number",
+                            "format": "float"
+                          },
+                          "longitud": {
+                            "type": "number",
+                            "format": "float"
+                          },
+                          "imagen": {
+                            "type": "string",
+                            "format": "url",
+                            "nullable": true
+                          },
+                          "fecha_creacion": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "fecha_modificacion": {
+                            "type": "string",
+                            "format": "date-time"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/programas": {
+      "get": {
+        "summary": "Obtener la lista de programas",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "query",
+            "description": "Formato de la respuesta",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": ["json"],
+              "default": "json",
+              "example": "json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de programas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "count": {
+                      "type": "integer"
+                    },
+                    "next": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "previous": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "results": {
+                      "type": "array",
+                      "items": {}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/museos": {
+      "get": {
+        "summary": "Obtener la lista de museos",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "query",
+            "description": "Formato de la respuesta",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": ["json"],
+              "default": "json",
+              "example": "json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de museos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "count": {
+                      "type": "integer"
+                    },
+                    "next": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "previous": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "results": {
+                      "type": "array",
+                      "items": {}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/institutos": {
+      "get": {
+        "summary": "Obtener la lista de institutos",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "query",
+            "description": "Formato de la respuesta",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": ["json"],
+              "default": "json",
+              "example": "json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de institutos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "count": {
+                      "type": "integer"
+                    },
+                    "next": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "previous": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "results": {
+                      "type": "array",
+                      "items": {}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tramites": {
+      "get": {
+        "summary": "Obtener la lista de trámites",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "query",
+            "description": "Formato de la respuesta",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": ["json"],
+              "default": "json",
+              "example": "json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de trámites",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "count": {
+                      "type": "integer"
+                    },
+                    "next": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "previous": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer"
+                          },
+                          "url": {
+                            "type": "string",
+                            "format": "url"
+                          },
+                          "titulo": {
+                            "type": "string"
+                          },
+                          "cuerpo": {
+                            "type": "string"
+                          },
+                          "documentos": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "format": "url"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/convocatorias": {
+      "get": {
+        "summary": "Obtener la lista de convocatorias",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "query",
+            "description": "Formato de la respuesta",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": ["json"],
+              "default": "json",
+              "example": "json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de convocatorias",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "count": {
+                      "type": "integer"
+                    },
+                    "next": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "previous": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer"
+                          },
+                          "url": {
+                            "type": "string",
+                            "format": "url"
+                          },
+                          "titulo": {
+                            "type": "string"
+                          },
+                          "cuerpo": {
+                            "type": "string"
+                          },
+                          "documentos": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "format": "url"
+                            }
+                          },
+                          "fecha_inicio": {
+                            "type": "string",
+                            "format": "date"
+                          },
+                          "fecha_fin": {
+                            "type": "string",
+                            "format": "date"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "TokenAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "Token"
+      }
+    }
+  }
+}
+
