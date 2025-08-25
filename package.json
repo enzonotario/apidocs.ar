@@ -13,21 +13,19 @@
     "site:dev": "node ./src/site-dev.js"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^4.16.2",
+    "@antfu/eslint-config": "^5.2.1",
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^22.16.3",
+    "@types/node": "^22.18.0",
     "autoprefixer": "^10.4.21",
-    "axios": "^1.10.0",
-    "eslint": "^9.31.0",
-    "fs-extra": "^11.3.0",
-    "postcss": "^8.5.6",
-    "shelljs": "^0.8.5",
-    "tailwindcss": "^3.4.17",
-    "typescript": "~5.7.3",
-    "vite": "^6.3.5",
+    "axios": "^1.11.0",
+    "eslint": "^9.34.0",
+    "fs-extra": "^11.3.1",
+    "shelljs": "^0.10.0",
+    "typescript": "~5.9.2",
+    "vite": "^7.1.3",
     "vitest": "^3.2.4"
   },
-  "packageManager": "pnpm@10.13.1",
+  "packageManager": "pnpm@10.15.0",
   "dependencies": {
     "@apidocs.ar/core": "0.0.4"
   }
