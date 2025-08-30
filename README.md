@@ -8,7 +8,7 @@ Puedes ver el listado de APIs disponibles en [apidocs.ar](https://apidocs.ar).
 
 ## Proponer nueva API
 
-Si deseas proponer una nueva API, puedes hacerlo [abriendo un issue en el repositorio de GitHub](https://github.com/enzonotario/apidocs.ar/issues/new).
+Visita la sección [Proponer nuevas APIs](https://apidocs.ar/proponer-api.html).
 
 ## Licencia
 
