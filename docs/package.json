@@ -13,6 +13,7 @@
     "postcss": "^8.5.6",
     "tailwindcss": "^3.4.17",
     "vitepress": "latest",
-    "vitepress-openapi": "latest"
+    "vitepress-openapi": "latest",
+    "vitepress-plugin-utterances": "^0.0.1"
   }
 }
