@@ -44,4 +44,9 @@ export default defineConfig({
       gtag('config', '${gaId}');`,
     ],
   ],
+  vite: {
+    ssr: {
+      noExternal: ['vitepress-plugin-utterances'],
+    },
+  },
 })
