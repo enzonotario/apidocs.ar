@@ -1,8 +1,12 @@
 #!/usr/bin/env node
 
-import { execSync } from 'node:child_process'
+import inquirer from 'inquirer'
+import inquirerSearchList from 'inquirer-search-list'
 import shell from 'shelljs'
 import { sites } from './sites.js'
+
+// Registrar el plugin de búsqueda
+inquirer.registerPrompt('search-list', inquirerSearchList)
 
 async function main() {
   const siteArg = process.argv[2]
@@ -24,20 +28,23 @@ async function main() {
 }
 
 async function selectSite() {
-  console.log('Select a site to run:')
-  sites.forEach((site, index) => {
-    console.log(`${index + 1}. ${site.name} (${site.subdomain})`)
-  })
+  const choices = sites.map(site => ({
+    name: `${site.name} (${site.subdomain})${site.description ? ` - ${site.description}` : ''}`,
+    value: site,
+    short: site.name,
+  }))
 
-  const { stdout } = execSync('read -p "Enter the number of the site: " input; echo $input', { shell: '/bin/bash' })
-  const selectedIndex = Number.parseInt(stdout.trim(), 10) - 1
+  const { site } = await inquirer.prompt([
+    {
+      type: 'search-list',
+      name: 'site',
+      message: 'Selecciona un sitio para desarrollar:',
+      choices,
+      pageSize: 10,
+    },
+  ])
 
-  if (isNaN(selectedIndex) || selectedIndex < 0 || selectedIndex >= sites.length) {
-    console.error('Invalid selection.')
-    process.exit(1)
-  }
-
-  return sites[selectedIndex]
+  return site
 }
 
 async function runVitepress(baseDir) {
