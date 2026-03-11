@@ -36,6 +36,14 @@ export const sites = [
     autogenerate: false,
   },
   {
+    name: 'Regimen de Transparencia BCRA',
+    description: 'Régimen de Transparencia',
+    subdomain: 'regimen-transparencia.bcra',
+    baseDir: '/sites/bcra/regimen-transparencia',
+    specUrl: fileURLToPath(new URL('../assets/regimen-transparencia.bcra.openapi.json', import.meta.url)),
+    tags: ['BCRA'],
+  },
+  {
     name: 'SOFSE Trenes',
     description: 'API de Trenes de SOFSE',
     subdomain: 'trenes.sofse',

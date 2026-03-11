@@ -1,0 +1,1261 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Regimen de Transparencia",
+    "description": "Brindar información para hacer eficientes las decisiones de contratación de productos financieros.",
+    "contact": {
+      "name": "API BCRA Consultas Técnicas",
+      "email": "api@bcra.gob.ar"
+    },
+    "version": "v1.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.bcra.gob.ar",
+      "description": ""
+    }
+  ],
+  "paths": {
+    "/transparencia/v1.0/CajasAhorros": {
+      "get": {
+        "tags": [
+          "CajasAhorros"
+        ],
+        "parameters": [
+          {
+            "name": "codigoEntidad",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CajaAhorroResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CajaAhorroResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CajaAhorroResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/transparencia/v1.0/PaquetesProductos": {
+      "get": {
+        "tags": [
+          "PaquetesProductos"
+        ],
+        "parameters": [
+          {
+            "name": "codigoEntidad",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaqueteProductoResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaqueteProductoResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaqueteProductoResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/transparencia/v1.0/PlazosFijos": {
+      "get": {
+        "tags": [
+          "PlazosFijos"
+        ],
+        "parameters": [
+          {
+            "name": "codigoEntidad",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlazoFijoResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlazoFijoResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlazoFijoResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/transparencia/v1.0/Prestamos/Prendarios": {
+      "get": {
+        "tags": [
+          "Prestamos"
+        ],
+        "parameters": [
+          {
+            "name": "codigoEntidad",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PrestamoPrendarioResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PrestamoPrendarioResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PrestamoPrendarioResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/transparencia/v1.0/Prestamos/Hipotecarios": {
+      "get": {
+        "tags": [
+          "Prestamos"
+        ],
+        "parameters": [
+          {
+            "name": "codigoEntidad",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PrestamoHipotecarioResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PrestamoHipotecarioResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PrestamoHipotecarioResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/transparencia/v1.0/Prestamos/Personales": {
+      "get": {
+        "tags": [
+          "Prestamos"
+        ],
+        "parameters": [
+          {
+            "name": "codigoEntidad",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PrestamoPersonalResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PrestamoPersonalResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PrestamoPersonalResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/transparencia/v1.0/TarjetasCredito": {
+      "get": {
+        "tags": [
+          "TarjetasCredito"
+        ],
+        "parameters": [
+          {
+            "name": "codigoEntidad",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TarjetaCreditoResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TarjetaCreditoResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TarjetaCreditoResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CajaAhorroDTO": {
+        "type": "object",
+        "properties": {
+          "codigoEntidad": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "descripcionEntidad": {
+            "type": "string",
+            "nullable": true
+          },
+          "fechaInformacion": {
+            "type": "string",
+            "format": "date",
+            "nullable": true,
+            "example": "2025-12-02"
+          },
+          "procesoSimplificadoDebidaDiligencia": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CajaAhorroResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CajaAhorroDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "errorMessages": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PaqueteProductoDTO": {
+        "type": "object",
+        "properties": {
+          "codigoEntidad": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "descripcionEntidad": {
+            "type": "string",
+            "nullable": true
+          },
+          "fechaInformacion": {
+            "type": "string",
+            "format": "date",
+            "nullable": true,
+            "example": "2025-12-02"
+          },
+          "nombreCompleto": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombreCorto": {
+            "type": "string",
+            "nullable": true
+          },
+          "territorioValidez": {
+            "type": "string",
+            "nullable": true
+          },
+          "masInformacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "comisionMaximaMantenimiento": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "ingresoMinimoMensual": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "antiguedadLaboralMinimaMeses": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "edadMaximaSolicitada": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "beneficiarios": {
+            "type": "string",
+            "nullable": true
+          },
+          "segmento": {
+            "type": "string",
+            "nullable": true
+          },
+          "productosIntegrantes": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PaqueteProductoResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PaqueteProductoDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PlazoFijoDTO": {
+        "type": "object",
+        "properties": {
+          "codigoEntidad": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "descripcionEntidad": {
+            "type": "string",
+            "nullable": true
+          },
+          "fechaInformacion": {
+            "type": "string",
+            "format": "date",
+            "nullable": true,
+            "example": "2025-12-02"
+          },
+          "nombreCompleto": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombreCorto": {
+            "type": "string",
+            "nullable": true
+          },
+          "territorioValidez": {
+            "type": "string",
+            "nullable": true
+          },
+          "masInformacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "denominacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "montoMinimoInvertir": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "plazoMinimoInvertirDias": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "canalConstitucion": {
+            "type": "string",
+            "nullable": true
+          },
+          "tasaEfectivaAnualMinima": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PlazoFijoResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PlazoFijoDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PrestamoHipotecarioDTO": {
+        "type": "object",
+        "properties": {
+          "codigoEntidad": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "descripcionEntidad": {
+            "type": "string",
+            "nullable": true
+          },
+          "fechaInformacion": {
+            "type": "string",
+            "format": "date",
+            "nullable": true,
+            "example": "2025-12-02"
+          },
+          "nombreCompleto": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombreCorto": {
+            "type": "string",
+            "nullable": true
+          },
+          "territorioValidez": {
+            "type": "string",
+            "nullable": true
+          },
+          "masInformacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "denominacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "montoMaximoOtorgable": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "plazoMaximoOtorgable": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "ingresoMinimoMensual": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "antiguedadLaboralMinimaMeses": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "edadMaximaSolicitada": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "relacionCuotaIngreso": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "beneficiario": {
+            "type": "string",
+            "nullable": true
+          },
+          "cargoMaximoCancelacionAnticipada": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "tasaEfectivaAnualMaxima": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "tipoTasa": {
+            "type": "string",
+            "nullable": true
+          },
+          "costoFinancieroEfectivoTotalMaximo": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "relacionMontoTasacion": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "destinoFondos": {
+            "type": "string",
+            "nullable": true
+          },
+          "cuotaInicialCada100k": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PrestamoHipotecarioResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PrestamoHipotecarioDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PrestamoPersonalDTO": {
+        "type": "object",
+        "properties": {
+          "codigoEntidad": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "descripcionEntidad": {
+            "type": "string",
+            "nullable": true
+          },
+          "fechaInformacion": {
+            "type": "string",
+            "format": "date",
+            "nullable": true,
+            "example": "2025-12-02"
+          },
+          "nombreCompleto": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombreCorto": {
+            "type": "string",
+            "nullable": true
+          },
+          "territorioValidez": {
+            "type": "string",
+            "nullable": true
+          },
+          "masInformacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "denominacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "montoMaximoOtorgable": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "plazoMaximoOtorgable": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "ingresoMinimoMensual": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "antiguedadLaboralMinimaMeses": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "edadMaximaSolicitada": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "relacionCuotaIngreso": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "beneficiario": {
+            "type": "string",
+            "nullable": true
+          },
+          "cargoMaximoCancelacionAnticipada": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "tasaEfectivaAnualMaxima": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "tipoTasa": {
+            "type": "string",
+            "nullable": true
+          },
+          "costoFinancieroEfectivoTotalMaximo": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "cuotaInicialCada10k": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "montoMinimoOtorgable": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PrestamoPersonalResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PrestamoPersonalDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PrestamoPrendarioDTO": {
+        "type": "object",
+        "properties": {
+          "codigoEntidad": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "descripcionEntidad": {
+            "type": "string",
+            "nullable": true
+          },
+          "fechaInformacion": {
+            "type": "string",
+            "format": "date",
+            "nullable": true,
+            "example": "2025-12-02"
+          },
+          "nombreCompleto": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombreCorto": {
+            "type": "string",
+            "nullable": true
+          },
+          "territorioValidez": {
+            "type": "string",
+            "nullable": true
+          },
+          "masInformacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "denominacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "montoMaximoOtorgable": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "plazoMaximoOtorgable": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "ingresoMinimoMensual": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "antiguedadLaboralMinimaMeses": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "edadMaximaSolicitada": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "relacionCuotaIngreso": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "beneficiario": {
+            "type": "string",
+            "nullable": true
+          },
+          "cargoMaximoCancelacionAnticipada": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "tasaEfectivaAnualMaxima": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "tipoTasa": {
+            "type": "string",
+            "nullable": true
+          },
+          "costoFinancieroEfectivoTotalMaximo": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "relacionMontoTasacion": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "destinoFondos": {
+            "type": "string",
+            "nullable": true
+          },
+          "cuotaInicialCada10k": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "montoMinimoOtorgable": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PrestamoPrendarioResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PrestamoPrendarioDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TarjetaCreditoDTO": {
+        "type": "object",
+        "properties": {
+          "codigoEntidad": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "descripcionEntidad": {
+            "type": "string",
+            "nullable": true
+          },
+          "fechaInformacion": {
+            "type": "string",
+            "format": "date",
+            "nullable": true,
+            "example": "2025-12-02"
+          },
+          "nombreCompleto": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombreCorto": {
+            "type": "string",
+            "nullable": true
+          },
+          "territorioValidez": {
+            "type": "string",
+            "nullable": true
+          },
+          "masInformacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "comisionMaximaAdministracionMantenimiento": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "comisionMaximaRenovacion": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "tasaEfectivaAnualMaximaFinanciacion": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "tasaEfectivaAnualMaximaAdelantoEfectivo": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "ingresoMinimoMensual": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "antiguedadLaboralMinimaMeses": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "edadMaximaSolicitada": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "segmento": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TarjetaCreditoResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TarjetaCreditoDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
