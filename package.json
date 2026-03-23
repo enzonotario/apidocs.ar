@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "test": "vitest",
     "test:run": "vitest --run",
-    "site:dev": "node ./src/site-dev.js"
+    "site:dev": "node ./src/site-dev.js",
+    "site:transform": "node ./src/site-transform.js"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^5.2.1",

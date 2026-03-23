@@ -115,5 +115,15 @@ export const sites = [
       "Argentina"
     ],
     "autogenerate": false
+  },
+  {
+    "name": "Data912",
+    "description": "API de datos financieros y precios en vivo (educativo)",
+    "subdomain": "data912",
+    "baseDir": "/sites/data912",
+    "specUrl": "/home/enzo/PhpstormProjects/apidocs.ar/assets/data912.openapi.json",
+    "tags": [
+      "Finanzas"
+    ]
   }
 ]

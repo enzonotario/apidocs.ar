@@ -96,4 +96,12 @@ export const sites = [
     tags: ['Argentina'],
     autogenerate: false,
   },
+  {
+    name: 'Data912',
+    description: 'API de datos financieros y precios en vivo (educativo)',
+    subdomain: 'data912',
+    baseDir: '/sites/data912',
+    specUrl: fileURLToPath(new URL('../assets/data912.openapi.json', import.meta.url)),
+    tags: ['Finanzas'],
+  },
 ]

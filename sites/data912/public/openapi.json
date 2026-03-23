@@ -1,0 +1,1591 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "API de Datos Financieros",
+    "description": "API con fines educativos que proporciona datos financieros, precios en vivo y análisis de riesgo. Los datos no son en tiempo real y cualquier parecido con los mercados reales es coincidencia.",
+    "version": "9.12.18"
+  },
+  "servers": [
+    {
+      "url": "https://data912.com",
+      "description": " (Germany, 2h Cloudflare caching ≈40ms/req) "
+    }
+  ],
+  "paths": {
+    "/live/mep": {
+      "get": {
+        "tags": [
+          "Live prices"
+        ],
+        "summary": "Dólar MEP en vivo",
+        "description": "Precios en vivo para el dólar MEP (Mercado Electrónico de Pagos).",
+        "operationId": "getLiveMep",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "ticker": {
+                        "type": "string",
+                        "description": "Símbolo del activo"
+                      },
+                      "bid": {
+                        "type": "number",
+                        "description": "Precio de compra (bid)"
+                      },
+                      "ask": {
+                        "type": "number",
+                        "description": "Precio de venta (ask)"
+                      },
+                      "close": {
+                        "type": "number",
+                        "description": "Último precio de cierre"
+                      },
+                      "mark": {
+                        "type": "number",
+                        "description": "Precio promedio (mark)"
+                      },
+                      "v_ars": {
+                        "type": "number",
+                        "description": "Volumen operado en ARS"
+                      },
+                      "v_usd": {
+                        "type": "number",
+                        "description": "Volumen operado en USD"
+                      },
+                      "q_ars": {
+                        "type": "number",
+                        "description": "Cantidad de operaciones en ARS"
+                      },
+                      "q_usd": {
+                        "type": "number",
+                        "description": "Cantidad de operaciones en USD"
+                      },
+                      "ars_bid": {
+                        "type": "number",
+                        "description": "Precio bid en ARS"
+                      },
+                      "ars_ask": {
+                        "type": "number",
+                        "description": "Precio ask en ARS"
+                      },
+                      "usd_bid": {
+                        "type": "number",
+                        "description": "Precio bid en USD"
+                      },
+                      "usd_ask": {
+                        "type": "number",
+                        "description": "Precio ask en USD"
+                      },
+                      "panel": {
+                        "type": "string",
+                        "description": "Panel de cotización"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error. Occurs when the server understands the request but cannot process it due to validation errors in the submitted data"
+          },
+          "429": {
+            "description": "Too many requests. Rate limit for this endpoint: 120 req/min"
+          }
+        }
+      }
+    },
+    "/live/ccl": {
+      "get": {
+        "tags": [
+          "Live prices"
+        ],
+        "summary": "Dólar CCL en vivo",
+        "description": "Precios en vivo para el dólar CCL (Contado con Liquidación).",
+        "operationId": "getLiveCcl",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "ticker_usa": {
+                        "type": "string",
+                        "description": "Símbolo del activo en USA"
+                      },
+                      "ticker_ar": {
+                        "type": "string",
+                        "description": "Símbolo del activo en Argentina"
+                      },
+                      "CCL_bid": {
+                        "type": "number",
+                        "description": "Precio bid del CCL"
+                      },
+                      "CCL_ask": {
+                        "type": "number",
+                        "description": "Precio ask del CCL"
+                      },
+                      "CCL_close": {
+                        "type": "number",
+                        "description": "Precio de cierre del CCL"
+                      },
+                      "CCL_mark": {
+                        "type": "number",
+                        "description": "Precio promedio del CCL"
+                      },
+                      "ars_volume": {
+                        "type": "number",
+                        "description": "Volumen operado en ARS"
+                      },
+                      "volume_rank": {
+                        "type": "number",
+                        "description": "Ranking por volumen"
+                      },
+                      "arg_panel": {
+                        "type": "string",
+                        "description": "Panel en Argentina"
+                      },
+                      "usa_panel": {
+                        "type": "string",
+                        "description": "Panel en USA"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error. Occurs when the server understands the request but cannot process it due to validation errors in the submitted data"
+          },
+          "429": {
+            "description": "Too many requests. Rate limit for this endpoint: 120 req/min"
+          }
+        }
+      }
+    },
+    "/live/arg_stocks": {
+      "get": {
+        "tags": [
+          "Live prices"
+        ],
+        "summary": "Acciones Argentinas",
+        "description": "Precios en vivo de acciones del mercado argentino (BYMA).",
+        "operationId": "getLiveArgStocks",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "symbol": {
+                        "type": "string",
+                        "description": "Símbolo del activo"
+                      },
+                      "c": {
+                        "type": "number",
+                        "description": "Precio actual"
+                      },
+                      "v": {
+                        "type": "number",
+                        "description": "Volumen operado"
+                      },
+                      "q_bid": {
+                        "type": "number",
+                        "description": "Cantidad bid"
+                      },
+                      "px_bid": {
+                        "type": "number",
+                        "description": "Precio bid"
+                      },
+                      "px_ask": {
+                        "type": "number",
+                        "description": "Precio ask"
+                      },
+                      "q_ask": {
+                        "type": "number",
+                        "description": "Cantidad ask"
+                      },
+                      "q_op": {
+                        "type": "number",
+                        "description": "Cantidad de operaciones diarias"
+                      },
+                      "pct_change": {
+                        "type": "number",
+                        "description": "Cambio porcentual diario"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error. Occurs when the server understands the request but cannot process it due to validation errors in the submitted data"
+          },
+          "429": {
+            "description": "Too many requests. Rate limit for this endpoint: 120 req/min"
+          }
+        }
+      }
+    },
+    "/live/arg_options": {
+      "get": {
+        "tags": [
+          "Live prices"
+        ],
+        "summary": "Opciones Argentinas",
+        "description": "Precios en vivo de cadenas de opciones del mercado argentino.",
+        "operationId": "getLiveArgOptions",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "symbol": {
+                        "type": "string",
+                        "description": "Símbolo del activo"
+                      },
+                      "c": {
+                        "type": "number",
+                        "description": "Precio actual"
+                      },
+                      "v": {
+                        "type": "number",
+                        "description": "Volumen operado"
+                      },
+                      "q_bid": {
+                        "type": "number",
+                        "description": "Cantidad bid"
+                      },
+                      "px_bid": {
+                        "type": "number",
+                        "description": "Precio bid"
+                      },
+                      "px_ask": {
+                        "type": "number",
+                        "description": "Precio ask"
+                      },
+                      "q_ask": {
+                        "type": "number",
+                        "description": "Cantidad ask"
+                      },
+                      "q_op": {
+                        "type": "number",
+                        "description": "Cantidad de operaciones diarias"
+                      },
+                      "pct_change": {
+                        "type": "number",
+                        "description": "Cambio porcentual diario"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error. Occurs when the server understands the request but cannot process it due to validation errors in the submitted data"
+          },
+          "429": {
+            "description": "Too many requests. Rate limit for this endpoint: 120 req/min"
+          }
+        }
+      }
+    },
+    "/live/arg_cedears": {
+      "get": {
+        "tags": [
+          "Live prices"
+        ],
+        "summary": "CEDEARs",
+        "description": "Precios en vivo de Certificados de Depósito Argentinos.",
+        "operationId": "getLiveArgCedears",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "symbol": {
+                        "type": "string",
+                        "description": "Símbolo del activo"
+                      },
+                      "c": {
+                        "type": "number",
+                        "description": "Precio actual"
+                      },
+                      "v": {
+                        "type": "number",
+                        "description": "Volumen operado"
+                      },
+                      "q_bid": {
+                        "type": "number",
+                        "description": "Cantidad bid"
+                      },
+                      "px_bid": {
+                        "type": "number",
+                        "description": "Precio bid"
+                      },
+                      "px_ask": {
+                        "type": "number",
+                        "description": "Precio ask"
+                      },
+                      "q_ask": {
+                        "type": "number",
+                        "description": "Cantidad ask"
+                      },
+                      "q_op": {
+                        "type": "number",
+                        "description": "Cantidad de operaciones diarias"
+                      },
+                      "pct_change": {
+                        "type": "number",
+                        "description": "Cambio porcentual diario"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error. Occurs when the server understands the request but cannot process it due to validation errors in the submitted data"
+          },
+          "429": {
+            "description": "Too many requests. Rate limit for this endpoint: 120 req/min"
+          }
+        }
+      }
+    },
+    "/live/arg_notes": {
+      "get": {
+        "tags": [
+          "Live prices"
+        ],
+        "summary": "Letras del Tesoro",
+        "description": "Precios en vivo de letras y notas del tesoro argentino.",
+        "operationId": "getLiveArgNotes",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "symbol": {
+                        "type": "string",
+                        "description": "Símbolo del activo"
+                      },
+                      "c": {
+                        "type": "number",
+                        "description": "Precio actual"
+                      },
+                      "v": {
+                        "type": "number",
+                        "description": "Volumen operado"
+                      },
+                      "q_bid": {
+                        "type": "number",
+                        "description": "Cantidad bid"
+                      },
+                      "px_bid": {
+                        "type": "number",
+                        "description": "Precio bid"
+                      },
+                      "px_ask": {
+                        "type": "number",
+                        "description": "Precio ask"
+                      },
+                      "q_ask": {
+                        "type": "number",
+                        "description": "Cantidad ask"
+                      },
+                      "q_op": {
+                        "type": "number",
+                        "description": "Cantidad de operaciones diarias"
+                      },
+                      "pct_change": {
+                        "type": "number",
+                        "description": "Cambio porcentual diario"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error. Occurs when the server understands the request but cannot process it due to validation errors in the submitted data"
+          },
+          "429": {
+            "description": "Too many requests. Rate limit for this endpoint: 120 req/min"
+          }
+        }
+      }
+    },
+    "/live/arg_corp": {
+      "get": {
+        "tags": [
+          "Live prices"
+        ],
+        "summary": "Obligaciones Negociables",
+        "description": "Precios en vivo de deuda corporativa argentina.",
+        "operationId": "getLiveArgCorp",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "symbol": {
+                        "type": "string",
+                        "description": "Símbolo del activo"
+                      },
+                      "c": {
+                        "type": "number",
+                        "description": "Precio actual"
+                      },
+                      "v": {
+                        "type": "number",
+                        "description": "Volumen operado"
+                      },
+                      "q_bid": {
+                        "type": "number",
+                        "description": "Cantidad bid"
+                      },
+                      "px_bid": {
+                        "type": "number",
+                        "description": "Precio bid"
+                      },
+                      "px_ask": {
+                        "type": "number",
+                        "description": "Precio ask"
+                      },
+                      "q_ask": {
+                        "type": "number",
+                        "description": "Cantidad ask"
+                      },
+                      "q_op": {
+                        "type": "number",
+                        "description": "Cantidad de operaciones diarias"
+                      },
+                      "pct_change": {
+                        "type": "number",
+                        "description": "Cambio porcentual diario"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error. Occurs when the server understands the request but cannot process it due to validation errors in the submitted data"
+          },
+          "429": {
+            "description": "Too many requests. Rate limit for this endpoint: 120 req/min"
+          }
+        }
+      }
+    },
+    "/live/arg_bonds": {
+      "get": {
+        "tags": [
+          "Live prices"
+        ],
+        "summary": "Bonos Argentinos",
+        "description": "Precios en vivo de bonos gubernamentales argentinos.",
+        "operationId": "getLiveArgBonds",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "symbol": {
+                        "type": "string",
+                        "description": "Símbolo del activo"
+                      },
+                      "c": {
+                        "type": "number",
+                        "description": "Precio actual"
+                      },
+                      "v": {
+                        "type": "number",
+                        "description": "Volumen operado"
+                      },
+                      "q_bid": {
+                        "type": "number",
+                        "description": "Cantidad bid"
+                      },
+                      "px_bid": {
+                        "type": "number",
+                        "description": "Precio bid"
+                      },
+                      "px_ask": {
+                        "type": "number",
+                        "description": "Precio ask"
+                      },
+                      "q_ask": {
+                        "type": "number",
+                        "description": "Cantidad ask"
+                      },
+                      "q_op": {
+                        "type": "number",
+                        "description": "Cantidad de operaciones diarias"
+                      },
+                      "pct_change": {
+                        "type": "number",
+                        "description": "Cambio porcentual diario"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error. Occurs when the server understands the request but cannot process it due to validation errors in the submitted data"
+          },
+          "429": {
+            "description": "Too many requests. Rate limit for this endpoint: 120 req/min"
+          }
+        }
+      }
+    },
+    "/live/usa_adrs": {
+      "get": {
+        "tags": [
+          "Live prices"
+        ],
+        "summary": "ADRs Argentinos en USA",
+        "description": "Precios en vivo de ADRs de empresas argentinas que cotizan en USA.",
+        "operationId": "getLiveUsaAdrs",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "symbol": {
+                        "type": "string",
+                        "description": "Símbolo del activo"
+                      },
+                      "c": {
+                        "type": "number",
+                        "description": "Precio actual"
+                      },
+                      "v": {
+                        "type": "number",
+                        "description": "Volumen operado"
+                      },
+                      "q_bid": {
+                        "type": "number",
+                        "description": "Cantidad bid"
+                      },
+                      "px_bid": {
+                        "type": "number",
+                        "description": "Precio bid"
+                      },
+                      "px_ask": {
+                        "type": "number",
+                        "description": "Precio ask"
+                      },
+                      "q_ask": {
+                        "type": "number",
+                        "description": "Cantidad ask"
+                      },
+                      "q_op": {
+                        "type": "number",
+                        "description": "Cantidad de operaciones diarias"
+                      },
+                      "pct_change": {
+                        "type": "number",
+                        "description": "Cambio porcentual diario"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error. Occurs when the server understands the request but cannot process it due to validation errors in the submitted data"
+          },
+          "429": {
+            "description": "Too many requests. Rate limit for this endpoint: 120 req/min"
+          }
+        }
+      }
+    },
+    "/live/usa_stocks": {
+      "get": {
+        "tags": [
+          "Live prices"
+        ],
+        "summary": "Acciones USA",
+        "description": "Precios en vivo de acciones del mercado de Estados Unidos.",
+        "operationId": "getLiveUsaStocks",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "symbol": {
+                        "type": "string",
+                        "description": "Símbolo del activo"
+                      },
+                      "c": {
+                        "type": "number",
+                        "description": "Precio actual"
+                      },
+                      "v": {
+                        "type": "number",
+                        "description": "Volumen operado"
+                      },
+                      "q_bid": {
+                        "type": "number",
+                        "description": "Cantidad bid"
+                      },
+                      "px_bid": {
+                        "type": "number",
+                        "description": "Precio bid"
+                      },
+                      "px_ask": {
+                        "type": "number",
+                        "description": "Precio ask"
+                      },
+                      "q_ask": {
+                        "type": "number",
+                        "description": "Cantidad ask"
+                      },
+                      "q_op": {
+                        "type": "number",
+                        "description": "Cantidad de operaciones diarias"
+                      },
+                      "pct_change": {
+                        "type": "number",
+                        "description": "Cambio porcentual diario"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error. Occurs when the server understands the request but cannot process it due to validation errors in the submitted data"
+          },
+          "429": {
+            "description": "Too many requests. Rate limit for this endpoint: 120 req/min"
+          }
+        }
+      }
+    },
+    "/historical/stocks/{ticker}": {
+      "get": {
+        "tags": [
+          "Historical"
+        ],
+        "summary": "Histórico de Acciones AR",
+        "description": "Datos históricos OHLCV de acciones argentinas.",
+        "operationId": "getHistoricalStocks",
+        "parameters": [
+          {
+            "name": "ticker",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Ticker"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/HistoricalBar"
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error. Occurs when the server understands the request but cannot process it due to validation errors in the submitted data"
+          },
+          "429": {
+            "description": "Too many requests. Rate limit for this endpoint: 120 req/min"
+          }
+        }
+      }
+    },
+    "/historical/cedears/{ticker}": {
+      "get": {
+        "tags": [
+          "Historical"
+        ],
+        "summary": "Histórico de CEDEARs",
+        "description": "Datos históricos OHLCV de CEDEARs.",
+        "operationId": "getHistoricalCedears",
+        "parameters": [
+          {
+            "name": "ticker",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Ticker"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/HistoricalBar"
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error. Occurs when the server understands the request but cannot process it due to validation errors in the submitted data"
+          },
+          "429": {
+            "description": "Too many requests. Rate limit for this endpoint: 120 req/min"
+          }
+        }
+      }
+    },
+    "/historical/bonds/{ticker}": {
+      "get": {
+        "tags": [
+          "Historical"
+        ],
+        "summary": "Histórico de Bonos AR",
+        "description": "Datos históricos OHLCV de bonos argentinos.",
+        "operationId": "getHistoricalBonds",
+        "parameters": [
+          {
+            "name": "ticker",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Ticker"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/HistoricalBar"
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error. Occurs when the server understands the request but cannot process it due to validation errors in the submitted data"
+          },
+          "429": {
+            "description": "Too many requests. Rate limit for this endpoint: 120 req/min"
+          }
+        }
+      }
+    },
+    "/eod/volatilities/{ticker}": {
+      "get": {
+        "tags": [
+          "EOD"
+        ],
+        "summary": "Análisis de Riesgo y Volatilidad",
+        "description": "Métricas de volatilidad implícita e histórica para activos de USA.",
+        "operationId": "getEodVolatilities",
+        "parameters": [
+          {
+            "name": "ticker",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Ticker"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VolatilityMetrics"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error. Occurs when the server understands the request but cannot process it due to validation errors in the submitted data"
+          },
+          "429": {
+            "description": "Too many requests. Rate limit for this endpoint: 120 req/min"
+          }
+        }
+      }
+    },
+    "/eod/option_chain/{ticker}": {
+      "get": {
+        "tags": [
+          "EOD"
+        ],
+        "summary": "Cadena de Opciones (USA)",
+        "description": "Datos de cierre (EOD) para cadenas de opciones del mercado estadounidense.",
+        "operationId": "getEodOptionChain",
+        "parameters": [
+          {
+            "name": "ticker",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Ticker"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "opex": {
+                        "type": "string",
+                        "description": "Fecha de expiración"
+                      },
+                      "s_symbol": {
+                        "type": "string",
+                        "description": "Símbolo del subyacente"
+                      },
+                      "type": {
+                        "type": "string",
+                        "description": "Tipo (call/put)"
+                      },
+                      "k": {
+                        "type": "number",
+                        "description": "Precio de ejercicio (strike)"
+                      },
+                      "oi": {
+                        "type": "number",
+                        "description": "Interés abierto (open interest)"
+                      },
+                      "c": {
+                        "type": "number",
+                        "description": "Precio de cierre"
+                      },
+                      "iv": {
+                        "type": "number",
+                        "description": "Volatilidad implícita"
+                      },
+                      "ask": {
+                        "type": "number",
+                        "description": "Precio ask"
+                      },
+                      "bid": {
+                        "type": "number",
+                        "description": "Precio bid"
+                      },
+                      "delta": {
+                        "type": "number",
+                        "description": "Griegas: Delta"
+                      },
+                      "gamma": {
+                        "type": "number",
+                        "description": "Griegas: Gamma"
+                      },
+                      "rho": {
+                        "type": "number",
+                        "description": "Griegas: Rho"
+                      },
+                      "theta": {
+                        "type": "number",
+                        "description": "Griegas: Theta"
+                      },
+                      "vega": {
+                        "type": "number",
+                        "description": "Griegas: Vega"
+                      },
+                      "fair_value": {
+                        "type": "number",
+                        "description": "Valor teórico justo"
+                      },
+                      "itm_prob": {
+                        "type": "number",
+                        "description": "Probabilidad de estar in-the-money"
+                      },
+                      "otm": {
+                        "type": "number",
+                        "description": "Valor fuera del dinero"
+                      },
+                      "intrinsic": {
+                        "type": "number",
+                        "description": "Valor intrínseco"
+                      },
+                      "fair_iv": {
+                        "type": "number",
+                        "description": "Volatilidad implícita justa"
+                      },
+                      "r_days": {
+                        "type": "number",
+                        "description": "Días restantes"
+                      },
+                      "r_tdays": {
+                        "type": "number",
+                        "description": "Días hábiles restantes"
+                      },
+                      "hv_2m": {
+                        "type": "number",
+                        "description": "Volatilidad histórica (2 meses)"
+                      },
+                      "hv_1yr": {
+                        "type": "number",
+                        "description": "Volatilidad histórica (1 año)"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error. Occurs when the server understands the request but cannot process it due to validation errors in the submitted data"
+          },
+          "429": {
+            "description": "Too many requests. Rate limit for this endpoint: 120 req/min"
+          }
+        }
+      }
+    },
+    "/contact": {
+      "post": {
+        "tags": [
+          "Contact me"
+        ],
+        "summary": "Contact",
+        "description": "You can hit up the Milton Casco Data Center Inc, the proud owner of the source code collecting all this data. Ask them to hook you up with repo access so you can spin it up on your own servers—or just drop by to say hi or pitch some wild ideas for new endpoints!",
+        "operationId": "postContact",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_contact_contact_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "422": {
+            "description": "Validation error. Occurs when the server understands the request but cannot process it due to validation errors in the submitted data"
+          },
+          "429": {
+            "description": "Too many requests. Rate limit for this endpoint: 1 req/min"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Body_contact_contact_post": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "title": "Email"
+          },
+          "comentario": {
+            "type": "string",
+            "title": "Comentario"
+          }
+        },
+        "type": "object",
+        "required": [
+          "email",
+          "comentario"
+        ],
+        "title": "Body_contact_contact_post"
+      },
+      "HistoricalBar": {
+        "properties": {
+          "date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fecha"
+          },
+          "o": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "O"
+          },
+          "h": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "H"
+          },
+          "l": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "L"
+          },
+          "c": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "C"
+          },
+          "v": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "V"
+          },
+          "dr": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dr"
+          },
+          "sa": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sa"
+          }
+        },
+        "type": "object",
+        "title": "Barra Histórica",
+        "example": [
+          {
+            "c": 1234.5,
+            "date": "2001-01-01",
+            "dr": 0.032,
+            "h": 1236,
+            "l": 1230,
+            "o": 1234,
+            "sa": 0.4,
+            "v": 10000
+          }
+        ]
+      },
+      "Panel": {
+        "properties": {
+          "symbol": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Symbol"
+          },
+          "q_bid": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Q Bid"
+          },
+          "px_bid": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Px Bid"
+          },
+          "px_ask": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Px Ask"
+          },
+          "q_ask": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Q Ask"
+          },
+          "v": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "V"
+          },
+          "q_op": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Q Op"
+          },
+          "c": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "C"
+          },
+          "pct_change": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Pct Change"
+          }
+        },
+        "type": "object",
+        "title": "Panel",
+        "example": [
+          {
+            "c": 56.4,
+            "pct_change": 0,
+            "px_ask": 58.9,
+            "px_bid": 51.3,
+            "q_ask": 23047,
+            "q_bid": 4194,
+            "q_op": 0,
+            "symbol": "XXXXX",
+            "v": 0
+          },
+          {
+            "c": 880,
+            "pct_change": 0,
+            "px_ask": 882,
+            "px_bid": 870,
+            "q_ask": 5,
+            "q_bid": 25,
+            "q_op": 0,
+            "symbol": "XXXXX",
+            "v": 0
+          }
+        ]
+      },
+      "VolatilityMetrics": {
+        "properties": {
+          "iv_s_term": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Iv S Term"
+          },
+          "iv_m_term": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Iv M Term"
+          },
+          "iv_l_term": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Iv L Term"
+          },
+          "iv_s_term_percentile": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Iv S Term Percentile"
+          },
+          "iv_m_term_percentile": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Iv M Term Percentile"
+          },
+          "iv_l_term_percentile": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Iv L Term Percentile"
+          },
+          "hv_s_term": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hv S Term"
+          },
+          "hv_m_term": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hv M Term"
+          },
+          "hv_l_term": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hv L Term"
+          },
+          "hv_s_term_percentile": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hv S Term Percentile"
+          },
+          "hv_m_term_percentile": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hv M Term Percentile"
+          },
+          "hv_l_term_percentile": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hv L Term Percentile"
+          },
+          "iv_hv_s_ratio": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Iv Hv S Ratio"
+          },
+          "iv_hv_s_ratio_percentile": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Iv Hv S Ratio Percentile"
+          },
+          "iv_hv_m_ratio": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Iv Hv M Ratio"
+          },
+          "iv_hv_m_ratio_percentile": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Iv Hv M Ratio Percentile"
+          },
+          "iv_hv_l_ratio": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Iv Hv L Ratio"
+          },
+          "iv_hv_l_ratio_percentile": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Iv Hv L Ratio Percentile"
+          },
+          "fair_iv": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fair Iv"
+          },
+          "fair_iv_percentile": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fair Iv Percentile"
+          },
+          "iv_fair_iv_ratio": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Iv Fair Iv Ratio"
+          },
+          "iv_fair_iv_ratio_percentile": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Iv Fair Iv Ratio Percentile"
+          }
+        },
+        "type": "object",
+        "title": "VolatilityMetrics",
+        "example": {
+          "fair_iv": 0.32800732421874995,
+          "fair_iv_percentile": 0.6369511694706607,
+          "hv_l_term": 0.567782,
+          "hv_l_term_percentile": 0.7870915364319059,
+          "hv_m_term": 0.4815615,
+          "hv_m_term_percentile": 0.7174751370002029,
+          "hv_s_term": 0.41557800000000006,
+          "hv_s_term_percentile": 0.6015831134564644,
+          "iv_fair_iv_ratio": 1.385411137029798,
+          "iv_fair_iv_ratio_percentile": 0.6619525547445255,
+          "iv_hv_l_ratio": 0.8013991285387702,
+          "iv_hv_l_ratio_percentile": 0.17404197080291972,
+          "iv_hv_m_ratio": 0.9560564953801332,
+          "iv_hv_m_ratio_percentile": 0.5063868613138686,
+          "iv_hv_s_ratio": 1.0778722646530854,
+          "iv_hv_s_ratio_percentile": 0.6106295620437956,
+          "iv_l_term": 0.45502,
+          "iv_l_term_percentile": 0.6729014598540146,
+          "iv_m_term": 0.4604,
+          "iv_m_term_percentile": 0.6895529197080292,
+          "iv_s_term": 0.44794,
+          "iv_s_term_percentile": 0.6619525547445255
+        }
+      }
+    }
+  }
+}

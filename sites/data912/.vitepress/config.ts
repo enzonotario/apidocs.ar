@@ -1,11 +1,15 @@
 import { defineConfig } from 'vitepress'
+import { useSidebar } from 'vitepress-openapi'
+import spec from '../public/openapi.json'
 
 const gaId = process.env.NODE_ENV === 'production' ? 'G-4RPLQ59LN8' : 'G-TEST'
 
+const sidebar = useSidebar({ spec })
+
 export default defineConfig({
   lang: 'es-AR',
-  title: 'Regimen de Transparencia BCRA',
-  description: 'Régimen de Transparencia',
+  title: 'Data912',
+  description: 'API de datos financieros y precios en vivo (educativo)',
   themeConfig: {
     socialLinks: [
       { icon: 'github', link: 'https://github.com/enzonotario/apidocs.ar' },
@@ -18,6 +22,14 @@ export default defineConfig({
     footer: {
       message: 'Liberado bajo la <a href="https://github.com/enzonotario/apidocs.ar/blob/main/LICENSE">Licencia MIT</a>.',
     },
+
+    sidebar: [
+      {
+        text: 'Introducción',
+        link: '/',
+      },
+      ...sidebar.generateSidebarGroups(),
+    ],
   },
   head: [
     // ['link', {rel: 'icon', type: 'image/png', href: '/logo.png'}],

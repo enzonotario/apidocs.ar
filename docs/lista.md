@@ -8,6 +8,7 @@ Lista de documentaciones de APIs públicas.
 - [Cheques denunciados](https://cheques.bcra.apidocs.ar)
 - [Estadísticas Monetarias / Principales Variables](https://principales-variables.bcra.apidocs.ar)
 - [Estadísticas Cambiarias](https://estadisticas-cambiarias.bcra.apidocs.ar)
+- [Régimen de Transparencia](https://regimen-transparencia.bcra.apidocs.ar)
 
 ## Transporte
 
@@ -21,6 +22,6 @@ Lista de documentaciones de APIs públicas.
 - [API de Presupuesto Abierto de la República Argentina](https://presupuesto-abierto.argentina.apidocs.ar)
 - [API del Ministerio de Cultura de la República Argentina](https://cultura.argentina.apidocs.ar)
 
-## Proponer nuevas APIs
+## Finanzas
 
-<!--@include: ./parts/utterances.md-->
+- [API de datos financieros y precios en vivo (educativo)](https://data912.apidocs.ar)
