@@ -118,7 +118,7 @@ export const sites = [
   },
   {
     "name": "Data912",
-    "description": "API de datos financieros y precios en vivo (educativo)",
+    "description": "Data912",
     "subdomain": "data912",
     "baseDir": "/sites/data912",
     "specUrl": "/home/enzo/PhpstormProjects/apidocs.ar/assets/data912.openapi.json",

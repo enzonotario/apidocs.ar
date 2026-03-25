@@ -1,7 +1,7 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "API de Datos Financieros",
+    "title": "Data912",
     "description": "API con fines educativos que proporciona datos financieros, precios en vivo y análisis de riesgo. Los datos no son en tiempo real y cualquier parecido con los mercados reales es coincidencia.",
     "version": "9.12.18"
   },

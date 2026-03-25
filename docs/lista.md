@@ -24,4 +24,4 @@ Lista de documentaciones de APIs públicas.
 
 ## Finanzas
 
-- [API de datos financieros y precios en vivo (educativo)](https://data912.apidocs.ar)
+- [Data912](https://data912.apidocs.ar)

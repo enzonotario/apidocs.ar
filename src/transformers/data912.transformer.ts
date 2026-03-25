@@ -1,6 +1,6 @@
 export async function transform(spec: any): Promise<any> {
   // Translate global info
-  spec.info.title = 'API de Datos Financieros'
+  spec.info.title = 'Data912'
   spec.info.description = 'API con fines educativos que proporciona datos financieros, precios en vivo y análisis de riesgo. Los datos no son en tiempo real y cualquier parecido con los mercados reales es coincidencia.'
 
   // 1. Refactor /live/mep
