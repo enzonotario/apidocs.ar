@@ -1,3 +1,4 @@
+import tailwindcss from '@tailwindcss/vite'
 import { defineConfig } from 'vitepress'
 
 const gaId = process.env.NODE_ENV === 'production' ? 'G-4RPLQ59LN8' : 'G-TEST'
@@ -45,6 +46,7 @@ export default defineConfig({
     ],
   ],
   vite: {
+    plugins: [tailwindcss()],
     ssr: {
       noExternal: ['vitepress-plugin-utterances'],
     },

@@ -1,3 +1,4 @@
+import tailwindcss from '@tailwindcss/vite'
 import { defineConfig } from 'vitepress'
 import { useSidebar } from 'vitepress-openapi'
 import { useOpenapi } from 'vitepress-openapi/client'
@@ -59,4 +60,7 @@ export default defineConfig({
       gtag('config', '${gaId}');`,
     ],
   ],
+  vite: {
+    plugins: [tailwindcss()],
+  },
 })

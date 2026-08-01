@@ -9,11 +9,10 @@
   },
   "devDependencies": {
     "@apidocs.ar/core": "0.0.4",
-    "autoprefixer": "^10.4.21",
-    "postcss": "^8.5.6",
-    "tailwindcss": "^3.4.17",
+    "tailwindcss": "^4.1.0",
     "vitepress": "latest",
-    "vitepress-openapi": "latest",
-    "vitepress-plugin-utterances": "^0.0.1"
+    "vitepress-openapi": "^0.2.0",
+    "vitepress-plugin-utterances": "^0.0.1",
+    "@tailwindcss/vite": "^4.1.0"
   }
 }
