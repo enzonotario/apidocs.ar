@@ -125,5 +125,16 @@ export const sites = [
     "tags": [
       "Finanzas"
     ]
+  },
+  {
+    "name": "IOL",
+    "description": "API v1 de InvertirOnline",
+    "subdomain": "iol",
+    "baseDir": "/sites/iol",
+    "specUrl": "/home/enzo/PhpstormProjects/apidocs.ar/assets/iol.openapi.json",
+    "tags": [
+      "Finanzas"
+    ],
+    "autogenerate": false
   }
 ]

@@ -104,4 +104,13 @@ export const sites = [
     specUrl: fileURLToPath(new URL('../assets/data912.openapi.json', import.meta.url)),
     tags: ['Finanzas'],
   },
+  {
+    name: 'IOL',
+    description: 'API v1 de InvertirOnline',
+    subdomain: 'iol',
+    baseDir: '/sites/iol',
+    specUrl: fileURLToPath(new URL('../assets/iol.openapi.json', import.meta.url)),
+    tags: ['Finanzas'],
+    autogenerate: false,
+  },
 ]

@@ -1,0 +1,11 @@
+{
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@apidocs.ar/core": "0.0.4",
+    "@tailwindcss/vite": "^4.1.0",
+    "tailwindcss": "^4.1.0",
+    "vitepress": "latest",
+    "vitepress-openapi": "https://pkg.pr.new/vitepress-openapi@a035214"
+  }
+}

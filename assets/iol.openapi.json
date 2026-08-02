@@ -1,0 +1,2328 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "version": "v1",
+        "title": "Versión API 1.0"
+    },
+    "paths": {
+        "/healthcheck": {
+            "get": {
+                "tags": [
+                    "HealthCheck"
+                ],
+                "operationId": "HealthCheck_Check",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            },
+                            "text/xml": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/api/portafolio": {
+            "get": {
+                "tags": [
+                    "MiCuenta"
+                ],
+                "operationId": "MiCuenta_Portafolio",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PortafolioModel"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PortafolioModel"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PortafolioModel"
+                                }
+                            },
+                            "text/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PortafolioModel"
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/api/estadocuenta": {
+            "get": {
+                "tags": [
+                    "MiCuenta"
+                ],
+                "operationId": "MiCuenta_EstadoCuenta",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EstadoCuentaModel"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EstadoCuentaModel"
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/api/operaciones/{numero}": {
+            "get": {
+                "tags": [
+                    "MiCuenta"
+                ],
+                "operationId": "MiCuenta_Operaciones",
+                "parameters": [
+                    {
+                        "name": "numero",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/OperacionDetalleModel"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/OperacionDetalleModel"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/OperacionDetalleModel"
+                                }
+                            },
+                            "text/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/OperacionDetalleModel"
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            },
+            "delete": {
+                "tags": [
+                    "MiCuenta"
+                ],
+                "operationId": "MiCuenta_Cancelar",
+                "parameters": [
+                    {
+                        "name": "numero",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseModel"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseModel"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseModel"
+                                }
+                            },
+                            "text/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseModel"
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/api/operaciones": {
+            "get": {
+                "tags": [
+                    "MiCuenta"
+                ],
+                "operationId": "MiCuenta_Operaciones",
+                "parameters": [
+                    {
+                        "name": "filtro.numero",
+                        "in": "query",
+                        "description": "Ejemplo: \r\n0,\r\n11122",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "filtro.estado",
+                        "in": "query",
+                        "description": "Estados para filtrar, desagregados en el resultado final\r\nEjemplo:\r\nTodas,\r\nPendientes,\r\nTerminadas,\r\nCanceladas",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "todas",
+                                "pendientes",
+                                "terminadas",
+                                "canceladas"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "filtro.fechaDesde",
+                        "in": "query",
+                        "description": "Ejemplo:\r\n2016-08-01 ,\r\n2016-01-23",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    },
+                    {
+                        "name": "filtro.fechaHasta",
+                        "in": "query",
+                        "description": "Ejemplo 2016-10-15 23:00:00 ,\r\n2016-05-01",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    },
+                    {
+                        "name": "filtro.pais",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "estados_Unidos",
+                                "argentina"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/OperacionModel"
+                                    }
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/OperacionModel"
+                                    }
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/OperacionModel"
+                                    }
+                                }
+                            },
+                            "text/xml": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/OperacionModel"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/api/operar/Vender": {
+            "post": {
+                "tags": [
+                    "Operar"
+                ],
+                "operationId": "Operar_Vender",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/VenderBindingModel"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/VenderBindingModel"
+                            }
+                        },
+                        "application/xml": {
+                            "schema": {
+                                "$ref": "#/components/schemas/VenderBindingModel"
+                            }
+                        },
+                        "text/xml": {
+                            "schema": {
+                                "$ref": "#/components/schemas/VenderBindingModel"
+                            }
+                        },
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/VenderBindingModel"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseModel"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseModel"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseModel"
+                                }
+                            },
+                            "text/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseModel"
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/api/operar/Comprar": {
+            "post": {
+                "tags": [
+                    "Operar"
+                ],
+                "operationId": "Operar_Comprar",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ComprarBindingModel"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ComprarBindingModel"
+                            }
+                        },
+                        "application/xml": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ComprarBindingModel"
+                            }
+                        },
+                        "text/xml": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ComprarBindingModel"
+                            }
+                        },
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ComprarBindingModel"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseModel"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseModel"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseModel"
+                                }
+                            },
+                            "text/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseModel"
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/api/{mercado}/Titulos/{simbolo}": {
+            "get": {
+                "tags": [
+                    "Titulos"
+                ],
+                "operationId": "Titulos_Titulos",
+                "parameters": [
+                    {
+                        "name": "mercado",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "bCBA",
+                                "nYSE",
+                                "nASDAQ",
+                                "aMEX",
+                                "bCS",
+                                "rOFX"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "simbolo",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TituloModel"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TituloModel"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TituloModel"
+                                }
+                            },
+                            "text/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TituloModel"
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/api/{mercado}/Titulos/{simbolo}/Opciones": {
+            "get": {
+                "tags": [
+                    "Titulos"
+                ],
+                "operationId": "Titulos_Opciones",
+                "parameters": [
+                    {
+                        "name": "mercado",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "bCBA",
+                                "nYSE",
+                                "nASDAQ",
+                                "aMEX",
+                                "bCS",
+                                "rOFX"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "simbolo",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/OpcionModel"
+                                    }
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/OpcionModel"
+                                    }
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/OpcionModel"
+                                    }
+                                }
+                            },
+                            "text/xml": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/OpcionModel"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/api/{pais}/Titulos/Cotizacion/Instrumentos": {
+            "get": {
+                "tags": [
+                    "Titulos"
+                ],
+                "operationId": "Titulos_InstrumentoCotizacionPorPais",
+                "parameters": [
+                    {
+                        "name": "pais",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "estados_Unidos",
+                                "argentina"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/InstrumentoCotizacionModel"
+                                    }
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/InstrumentoCotizacionModel"
+                                    }
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/InstrumentoCotizacionModel"
+                                    }
+                                }
+                            },
+                            "text/xml": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/InstrumentoCotizacionModel"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/api/Cotizaciones/{Instrumento}/{Panel}/{Pais}": {
+            "get": {
+                "tags": [
+                    "Titulos"
+                ],
+                "operationId": "Titulos_PanelCotizaciones",
+                "parameters": [
+                    {
+                        "name": "Instrumento",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Panel",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Pais",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "panelCotizacion.instrumento",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "acciones",
+                                "bonos",
+                                "opciones",
+                                "monedas",
+                                "cauciones",
+                                "cHPD",
+                                "futuros",
+                                "aDRs",
+                                "obligacionesNegociables",
+                                "letras"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "panelCotizacion.panel",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "panelCotizacion.pais",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "estados_Unidos",
+                                "argentina"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PanelModel"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PanelModel"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PanelModel"
+                                }
+                            },
+                            "text/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PanelModel"
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/api/{pais}/Titulos/Cotizacion/Paneles/{instrumento}": {
+            "get": {
+                "tags": [
+                    "Titulos"
+                ],
+                "operationId": "Titulos_InstrumentoCotizacionPorPais",
+                "parameters": [
+                    {
+                        "name": "pais",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "estados_Unidos",
+                                "argentina"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "instrumento",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/InstrumentoCotizacionModel"
+                                    }
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/InstrumentoCotizacionModel"
+                                    }
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/InstrumentoCotizacionModel"
+                                    }
+                                }
+                            },
+                            "text/xml": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/InstrumentoCotizacionModel"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/api/{Mercado}/Titulos/{Simbolo}/Cotizacion": {
+            "get": {
+                "tags": [
+                    "Titulos"
+                ],
+                "operationId": "Titulos_Cotizacion",
+                "parameters": [
+                    {
+                        "name": "mercado",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "simbolo",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "model.simbolo",
+                        "in": "query",
+                        "description": "Ejemplo: ALUA, APBR",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "model.mercado",
+                        "in": "query",
+                        "description": "Ejemplo:\r\nRofx,\r\nBCBA",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "bCBA",
+                                "nYSE",
+                                "nASDAQ",
+                                "aMEX",
+                                "bCS",
+                                "rOFX"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "model.plazo",
+                        "in": "query",
+                        "description": "T0 = Inmediato\r\nT+1 = 24 Horas\r\nT+2 = 72 Horas",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "t0",
+                                "t1",
+                                "t2",
+                                "t3"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CotizacionModel"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CotizacionModel"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CotizacionModel"
+                                }
+                            },
+                            "text/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CotizacionModel"
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/api/{mercado}/Titulos/{simbolo}/Cotizacion/seriehistorica/{fechaDesde}/{fechaHasta}/{ajustada}": {
+            "get": {
+                "tags": [
+                    "Titulos"
+                ],
+                "operationId": "Titulos_CotizacionSerieHistorica",
+                "parameters": [
+                    {
+                        "name": "mercado",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "bCBA",
+                                "nYSE",
+                                "nASDAQ",
+                                "aMEX",
+                                "bCS",
+                                "rOFX"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "simbolo",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "fechaDesde",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    },
+                    {
+                        "name": "fechaHasta",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    },
+                    {
+                        "name": "ajustada",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "ajustada",
+                                "sinAjustar"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/CotizacionModel"
+                                    }
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/CotizacionModel"
+                                    }
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/CotizacionModel"
+                                    }
+                                }
+                            },
+                            "text/xml": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/CotizacionModel"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/token": {
+            "post": {
+                "tags": [
+                    "Token"
+                ],
+                "operationId": "Token_Token",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TokenRequest"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TokenRequest"
+                            }
+                        },
+                        "application/xml": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TokenRequest"
+                            }
+                        },
+                        "text/xml": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TokenRequest"
+                            }
+                        },
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TokenRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/APIToken"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/APIToken"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/APIToken"
+                                }
+                            },
+                            "text/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/APIToken"
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        }
+    },
+    "servers": [
+        {
+            "url": "https://api.invertironline.com"
+        }
+    ],
+    "components": {
+        "schemas": {
+            "PortafolioModel": {
+                "type": "object",
+                "properties": {
+                    "pais": {
+                        "enum": [
+                            "estados_Unidos",
+                            "argentina"
+                        ],
+                        "type": "string"
+                    },
+                    "activos": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/PosicionModel"
+                        }
+                    }
+                }
+            },
+            "PosicionModel": {
+                "type": "object",
+                "properties": {
+                    "cantidad": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "comprometido": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "puntosVariacion": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "variacionDiaria": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "ultimoPrecio": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "ppc": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "gananciaPorcentaje": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "gananciaDinero": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "valorizado": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "titulo": {
+                        "$ref": "#/components/schemas/TituloModel"
+                    },
+                    "parking": {
+                        "$ref": "#/components/schemas/ParkingModel"
+                    }
+                }
+            },
+            "TituloModel": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "simbolo": {
+                        "type": "string"
+                    },
+                    "descripcion": {
+                        "type": "string"
+                    },
+                    "pais": {
+                        "enum": [
+                            "estados_Unidos",
+                            "argentina"
+                        ],
+                        "type": "string"
+                    },
+                    "mercado": {
+                        "enum": [
+                            "bCBA",
+                            "nYSE",
+                            "nASDAQ",
+                            "aMEX",
+                            "bCS",
+                            "rOFX"
+                        ],
+                        "type": "string"
+                    },
+                    "tipo": {
+                        "enum": [
+                            "oPCIONES",
+                            "cEDEARS",
+                            "titulosPublicos",
+                            "aCCIONES",
+                            "cUPONESPRIVADOS",
+                            "fONDOSDEINVERSION",
+                            "aDR",
+                            "iNDICES",
+                            "bOCON",
+                            "bONEX",
+                            "cERTIFICADOSPAR",
+                            "oBLIGACIONESNEGOCIABLES",
+                            "oBLIGACIONESPYME",
+                            "cUPONESOBL",
+                            "lETRASDEPRECADO",
+                            "lETES",
+                            "tITULOSDEUDA",
+                            "cUPONESEXTRANJEROS",
+                            "cUPONESTPI",
+                            "bONOS",
+                            "dIVISAS",
+                            "fONDOSCOTIZANTES",
+                            "cAUCIONESPESOS",
+                            "cAUCIONESDOLARES",
+                            "cERTIFICADOSCREDITOFISCAL",
+                            "cEDRO",
+                            "bODEN",
+                            "fONDOSRENTAFIJA",
+                            "fideicomiso",
+                            "rENTAFIJA",
+                            "cHEQUEPAGODIFERIDO",
+                            "componenteDEEtf",
+                            "componenteDEEtf_Viejo",
+                            "futuros",
+                            "soja",
+                            "maiz",
+                            "trigo",
+                            "oro",
+                            "petroleo",
+                            "fideicomisoFinanciero",
+                            "obligacionesNegociables",
+                            "letraNota",
+                            "fondoComundeInversion",
+                            "titulosPublicosSuscribibles",
+                            "accionesSuscribibles",
+                            "incrementoCapital",
+                            "letesSuscribibles",
+                            "letras",
+                            "fondosMutuosUSA"
+                        ],
+                        "type": "string"
+                    },
+                    "plazo": {
+                        "enum": [
+                            "t0",
+                            "t1",
+                            "t2",
+                            "t3"
+                        ],
+                        "type": "string"
+                    },
+                    "moneda": {
+                        "enum": [
+                            "peso_Argentino",
+                            "dolar_Estadounidense",
+                            "real",
+                            "peso_Mexicano",
+                            "peso_Chileno",
+                            "yen",
+                            "libra",
+                            "euro",
+                            "peso_Peruano",
+                            "peso_Colombiano",
+                            "peso_Uruguayo"
+                        ],
+                        "type": "string"
+                    }
+                }
+            },
+            "ParkingModel": {
+                "type": "object",
+                "properties": {
+                    "disponibleInmediato": {
+                        "format": "int32",
+                        "type": "integer"
+                    }
+                }
+            },
+            "EstadoCuentaModel": {
+                "type": "object",
+                "properties": {
+                    "cuentas": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/CuentaModel"
+                        }
+                    },
+                    "estadisticas": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/EstadisticaModel"
+                        }
+                    },
+                    "totalEnPesos": {
+                        "format": "double",
+                        "type": "number"
+                    }
+                }
+            },
+            "CuentaModel": {
+                "type": "object",
+                "properties": {
+                    "numero": {
+                        "type": "string"
+                    },
+                    "tipo": {
+                        "enum": [
+                            "inversion_Argentina_Pesos",
+                            "inversion_Argentina_Dolares",
+                            "inversion_Estados_Unidos_Dolares",
+                            "administrada_Argentina_Pesos",
+                            "administrada_Argentina_Dolares",
+                            "administrada_Estados_Unidos_Dolares"
+                        ],
+                        "type": "string"
+                    },
+                    "moneda": {
+                        "enum": [
+                            "peso_Argentino",
+                            "dolar_Estadounidense",
+                            "real",
+                            "peso_Mexicano",
+                            "peso_Chileno",
+                            "yen",
+                            "libra",
+                            "euro",
+                            "peso_Peruano",
+                            "peso_Colombiano",
+                            "peso_Uruguayo"
+                        ],
+                        "type": "string"
+                    },
+                    "disponible": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "comprometido": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "saldo": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "titulosValorizados": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "total": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "margenDescubierto": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "saldos": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/SaldoModel"
+                        }
+                    },
+                    "estado": {
+                        "enum": [
+                            "operable",
+                            "cerrada",
+                            "bloqueada"
+                        ],
+                        "type": "string"
+                    }
+                }
+            },
+            "EstadisticaModel": {
+                "type": "object",
+                "properties": {
+                    "descripcion": {
+                        "type": "string"
+                    },
+                    "cantidad": {
+                        "format": "int32",
+                        "type": "integer"
+                    },
+                    "volumen": {
+                        "format": "double",
+                        "type": "number"
+                    }
+                }
+            },
+            "SaldoModel": {
+                "type": "object",
+                "properties": {
+                    "liquidacion": {
+                        "enum": [
+                            "inmediato",
+                            "hrs24",
+                            "hrs48",
+                            "hrs72",
+                            "otro",
+                            "masHrs72"
+                        ],
+                        "type": "string"
+                    },
+                    "saldo": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "comprometido": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "disponible": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "disponibleOperar": {
+                        "format": "double",
+                        "type": "number"
+                    }
+                }
+            },
+            "OperacionDetalleModel": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "numero": {
+                        "format": "int32",
+                        "type": "integer"
+                    },
+                    "mercado": {
+                        "enum": [
+                            "bCBA",
+                            "nYSE",
+                            "nASDAQ",
+                            "aMEX",
+                            "bCS",
+                            "rOFX"
+                        ],
+                        "type": "string"
+                    },
+                    "simbolo": {
+                        "type": "string"
+                    },
+                    "moneda": {
+                        "enum": [
+                            "peso_Argentino",
+                            "dolar_Estadounidense",
+                            "real",
+                            "peso_Mexicano",
+                            "peso_Chileno",
+                            "yen",
+                            "libra",
+                            "euro",
+                            "peso_Peruano",
+                            "peso_Colombiano",
+                            "peso_Uruguayo",
+                            "dolar_BNA",
+                            "dolar_Bolsa"
+                        ],
+                        "type": "string"
+                    },
+                    "tipo": {
+                        "enum": [
+                            "compra",
+                            "venta",
+                            "caucion",
+                            "suscripcion",
+                            "rescate",
+                            "suscripcionPrimaria",
+                            "suscripcionFCI",
+                            "rescateFCI"
+                        ],
+                        "type": "string"
+                    },
+                    "fechaAlta": {
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "validez": {
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "fechaOperado": {
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "estadoActual": {
+                        "enum": [
+                            "iniciada",
+                            "en_Proceso",
+                            "parcialmente_Terminada",
+                            "terminada",
+                            "cancelada",
+                            "pendiente_Cancelacion",
+                            "cancelada_Por_Vencimiento_Validez",
+                            "parcialmente_Terminada_Con_Pedido_Cancelacion",
+                            "en_Modificacion"
+                        ],
+                        "type": "string"
+                    },
+                    "estados": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Estado"
+                        }
+                    },
+                    "aranceles": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Arancel"
+                        }
+                    },
+                    "operaciones": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Operacion"
+                        }
+                    },
+                    "precio": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "cantidad": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "monto": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "fondosParaOperacion": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "montoOperacion": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "modalidad": {
+                        "enum": [
+                            "precio_Limite",
+                            "precio_Mercado"
+                        ],
+                        "type": "string"
+                    },
+                    "arancelesARS": {
+                        "format": "double",
+                        "type": "number",
+                        "readOnly": true
+                    },
+                    "arancelesUSD": {
+                        "format": "double",
+                        "type": "number",
+                        "readOnly": true
+                    },
+                    "plazo": {
+                        "enum": [
+                            "sinValor",
+                            "a72horas",
+                            "a24horas",
+                            "inmediata",
+                            "a48horas"
+                        ],
+                        "type": "string"
+                    }
+                }
+            },
+            "Estado": {
+                "type": "object",
+                "properties": {
+                    "detalle": {
+                        "type": "string"
+                    },
+                    "fecha": {
+                        "format": "date-time",
+                        "type": "string"
+                    }
+                }
+            },
+            "Arancel": {
+                "type": "object",
+                "properties": {
+                    "tipo": {
+                        "type": "string"
+                    },
+                    "neto": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "iva": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "moneda": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Operacion": {
+                "type": "object",
+                "properties": {
+                    "fecha": {
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "cantidad": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "precio": {
+                        "format": "double",
+                        "type": "number"
+                    }
+                }
+            },
+            "ResponseModel": {
+                "type": "object",
+                "properties": {
+                    "ok": {
+                        "type": "boolean"
+                    },
+                    "messages": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/DetalleMensaje"
+                        }
+                    }
+                }
+            },
+            "DetalleMensaje": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                }
+            },
+            "OperacionBindingModel": {
+                "type": "object",
+                "properties": {
+                    "numero": {
+                        "format": "int32",
+                        "description": "Ejemplo: \r\n0,\r\n11122",
+                        "type": "integer"
+                    },
+                    "estado": {
+                        "description": "Estados para filtrar, desagregados en el resultado final\r\nEjemplo:\r\nTodas,\r\nPendientes,\r\nTerminadas,\r\nCanceladas",
+                        "enum": [
+                            "todas",
+                            "pendientes",
+                            "terminadas",
+                            "canceladas"
+                        ],
+                        "type": "string"
+                    },
+                    "fechaDesde": {
+                        "format": "date-time",
+                        "description": "Ejemplo:\r\n2016-08-01 ,\r\n2016-01-23",
+                        "type": "string"
+                    },
+                    "fechaHasta": {
+                        "format": "date-time",
+                        "description": "Ejemplo 2016-10-15 23:00:00 ,\r\n2016-05-01",
+                        "type": "string"
+                    },
+                    "pais": {
+                        "enum": [
+                            "estados_Unidos",
+                            "argentina"
+                        ],
+                        "type": "string"
+                    }
+                }
+            },
+            "OperacionModel": {
+                "type": "object",
+                "properties": {
+                    "numero": {
+                        "format": "int32",
+                        "type": "integer"
+                    },
+                    "fechaOrden": {
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "tipo": {
+                        "type": "string"
+                    },
+                    "estado": {
+                        "enum": [
+                            "iniciada",
+                            "en_Proceso",
+                            "parcialmente_Terminada",
+                            "terminada",
+                            "cancelada",
+                            "pendiente_Cancelacion",
+                            "cancelada_Por_Vencimiento_Validez",
+                            "parcialmente_Terminada_Con_Pedido_Cancelacion",
+                            "en_Modificacion"
+                        ],
+                        "type": "string"
+                    },
+                    "mercado": {
+                        "type": "string"
+                    },
+                    "simbolo": {
+                        "type": "string"
+                    },
+                    "cantidad": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "monto": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "modalidad": {
+                        "enum": [
+                            "precio_Limite",
+                            "precio_Mercado"
+                        ],
+                        "type": "string"
+                    },
+                    "precio": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "fechaOperada": {
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "cantidadOperada": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "precioOperado": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "montoOperado": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "plazo": {
+                        "enum": [
+                            "sinValor",
+                            "a72horas",
+                            "a24horas",
+                            "inmediata",
+                            "a48horas"
+                        ],
+                        "type": "string"
+                    }
+                }
+            },
+            "VenderBindingModel": {
+                "description": "",
+                "required": [
+                    "mercado",
+                    "simbolo",
+                    "cantidad",
+                    "precio",
+                    "validez"
+                ],
+                "type": "object",
+                "properties": {
+                    "mercado": {
+                        "description": "",
+                        "enum": [
+                            "bCBA",
+                            "nYSE",
+                            "nASDAQ",
+                            "aMEX",
+                            "bCS",
+                            "rOFX"
+                        ],
+                        "type": "string"
+                    },
+                    "simbolo": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "cantidad": {
+                        "format": "double",
+                        "description": "",
+                        "type": "number"
+                    },
+                    "precio": {
+                        "format": "double",
+                        "description": "",
+                        "type": "number"
+                    },
+                    "validez": {
+                        "format": "date-time",
+                        "description": "",
+                        "type": "string"
+                    },
+                    "tipoOrden": {
+                        "enum": [
+                            "precioLimite",
+                            "precioMercado"
+                        ],
+                        "type": "string"
+                    },
+                    "plazo": {
+                        "enum": [
+                            "t0",
+                            "t1",
+                            "t2",
+                            "t3"
+                        ],
+                        "type": "string"
+                    },
+                    "idFuente": {
+                        "format": "int32",
+                        "description": "",
+                        "type": "integer"
+                    }
+                }
+            },
+            "ComprarBindingModel": {
+                "description": "",
+                "required": [
+                    "mercado",
+                    "simbolo",
+                    "precio",
+                    "plazo",
+                    "validez"
+                ],
+                "type": "object",
+                "properties": {
+                    "mercado": {
+                        "description": "",
+                        "enum": [
+                            "bCBA",
+                            "nYSE",
+                            "nASDAQ",
+                            "aMEX",
+                            "bCS",
+                            "rOFX"
+                        ],
+                        "type": "string"
+                    },
+                    "simbolo": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "cantidad": {
+                        "format": "double",
+                        "description": "",
+                        "type": "number"
+                    },
+                    "precio": {
+                        "format": "double",
+                        "description": "",
+                        "type": "number"
+                    },
+                    "plazo": {
+                        "description": "",
+                        "enum": [
+                            "t0",
+                            "t1",
+                            "t2",
+                            "t3"
+                        ],
+                        "type": "string"
+                    },
+                    "validez": {
+                        "format": "date-time",
+                        "description": "",
+                        "type": "string"
+                    },
+                    "tipoOrden": {
+                        "enum": [
+                            "precioLimite",
+                            "precioMercado"
+                        ],
+                        "type": "string"
+                    },
+                    "monto": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "idFuente": {
+                        "format": "int32",
+                        "description": "",
+                        "type": "integer"
+                    }
+                }
+            },
+            "OpcionModel": {
+                "type": "object",
+                "properties": {
+                    "simboloSubyacente": {
+                        "type": "string"
+                    },
+                    "fechaVencimiento": {
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "tipoOpcion": {
+                        "type": "string"
+                    },
+                    "simbolo": {
+                        "type": "string"
+                    },
+                    "descripcion": {
+                        "type": "string"
+                    },
+                    "pais": {
+                        "enum": [
+                            "estados_Unidos",
+                            "argentina"
+                        ],
+                        "type": "string"
+                    },
+                    "mercado": {
+                        "enum": [
+                            "bCBA",
+                            "nYSE",
+                            "nASDAQ",
+                            "aMEX",
+                            "bCS",
+                            "rOFX"
+                        ],
+                        "type": "string"
+                    },
+                    "tipo": {
+                        "enum": [
+                            "oPCIONES",
+                            "cEDEARS",
+                            "titulosPublicos",
+                            "aCCIONES",
+                            "cUPONESPRIVADOS",
+                            "fONDOSDEINVERSION",
+                            "aDR",
+                            "iNDICES",
+                            "bOCON",
+                            "bONEX",
+                            "cERTIFICADOSPAR",
+                            "oBLIGACIONESNEGOCIABLES",
+                            "oBLIGACIONESPYME",
+                            "cUPONESOBL",
+                            "lETRASDEPRECADO",
+                            "lETES",
+                            "tITULOSDEUDA",
+                            "cUPONESEXTRANJEROS",
+                            "cUPONESTPI",
+                            "bONOS",
+                            "dIVISAS",
+                            "fONDOSCOTIZANTES",
+                            "cAUCIONESPESOS",
+                            "cAUCIONESDOLARES",
+                            "cERTIFICADOSCREDITOFISCAL",
+                            "cEDRO",
+                            "bODEN",
+                            "fONDOSRENTAFIJA",
+                            "fideicomiso",
+                            "rENTAFIJA",
+                            "cHEQUEPAGODIFERIDO",
+                            "componenteDEEtf",
+                            "componenteDEEtf_Viejo",
+                            "futuros",
+                            "soja",
+                            "maiz",
+                            "trigo",
+                            "oro",
+                            "petroleo",
+                            "fideicomisoFinanciero",
+                            "obligacionesNegociables",
+                            "letraNota",
+                            "fondoComundeInversion",
+                            "titulosPublicosSuscribibles",
+                            "accionesSuscribibles",
+                            "incrementoCapital",
+                            "letesSuscribibles",
+                            "letras",
+                            "fondosMutuosUSA"
+                        ],
+                        "type": "string"
+                    },
+                    "plazo": {
+                        "enum": [
+                            "t0",
+                            "t1",
+                            "t2",
+                            "t3"
+                        ],
+                        "type": "string"
+                    },
+                    "moneda": {
+                        "enum": [
+                            "peso_Argentino",
+                            "dolar_Estadounidense",
+                            "real",
+                            "peso_Mexicano",
+                            "peso_Chileno",
+                            "yen",
+                            "libra",
+                            "euro",
+                            "peso_Peruano",
+                            "peso_Colombiano",
+                            "peso_Uruguayo"
+                        ],
+                        "type": "string"
+                    }
+                }
+            },
+            "InstrumentoCotizacionModel": {
+                "type": "object",
+                "properties": {
+                    "instrumento": {
+                        "type": "string"
+                    },
+                    "pais": {
+                        "enum": [
+                            "estados_Unidos",
+                            "argentina"
+                        ],
+                        "type": "string"
+                    }
+                }
+            },
+            "PanelCotizacionBindingModel": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "instrumento": {
+                        "enum": [
+                            "acciones",
+                            "bonos",
+                            "opciones",
+                            "monedas",
+                            "cauciones",
+                            "cHPD",
+                            "futuros",
+                            "aDRs",
+                            "obligacionesNegociables",
+                            "letras"
+                        ],
+                        "type": "string"
+                    },
+                    "panel": {
+                        "type": "string"
+                    },
+                    "pais": {
+                        "enum": [
+                            "estados_Unidos",
+                            "argentina"
+                        ],
+                        "type": "string"
+                    }
+                }
+            },
+            "PanelModel": {
+                "type": "object",
+                "properties": {
+                    "titulos": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/PanelTituloModel"
+                        }
+                    }
+                }
+            },
+            "PanelTituloModel": {
+                "type": "object",
+                "properties": {
+                    "simbolo": {
+                        "type": "string"
+                    },
+                    "descripcion": {
+                        "type": "string"
+                    },
+                    "puntas": {
+                        "$ref": "#/components/schemas/PuntasModel"
+                    },
+                    "ultimoPrecio": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "variacionPorcentual": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "apertura": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "maximo": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "minimo": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "ultimoCierre": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "volumen": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "cantidadOperaciones": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "fecha": {
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "tipoOpcion": {
+                        "type": "string"
+                    },
+                    "precioEjercicio": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "fechaVencimiento": {
+                        "type": "string"
+                    },
+                    "mercado": {
+                        "type": "string"
+                    },
+                    "moneda": {
+                        "type": "string"
+                    }
+                }
+            },
+            "PuntasModel": {
+                "type": "object",
+                "properties": {
+                    "cantidadCompra": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "precioCompra": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "precioVenta": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "cantidadVenta": {
+                        "format": "double",
+                        "type": "number"
+                    }
+                }
+            },
+            "TituloCotizacionBindingModel": {
+                "description": "",
+                "required": [
+                    "simbolo",
+                    "mercado"
+                ],
+                "type": "object",
+                "properties": {
+                    "simbolo": {
+                        "description": "Ejemplo: ALUA, APBR",
+                        "type": "string"
+                    },
+                    "mercado": {
+                        "description": "Ejemplo:\r\nRofx,\r\nBCBA",
+                        "enum": [
+                            "bCBA",
+                            "nYSE",
+                            "nASDAQ",
+                            "aMEX",
+                            "bCS",
+                            "rOFX"
+                        ],
+                        "type": "string"
+                    },
+                    "plazo": {
+                        "description": "T0 = Inmediato\r\nT+1 = 24 Horas\r\nT+2 = 72 Horas",
+                        "enum": [
+                            "t0",
+                            "t1",
+                            "t2",
+                            "t3"
+                        ],
+                        "type": "string"
+                    }
+                }
+            },
+            "CotizacionModel": {
+                "type": "object",
+                "properties": {
+                    "ultimoPrecio": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "variacion": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "apertura": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "maximo": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "minimo": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "fechaHora": {
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "tendencia": {
+                        "enum": [
+                            "sube",
+                            "baja",
+                            "mantiene"
+                        ],
+                        "type": "string"
+                    },
+                    "cierreAnterior": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "montoOperado": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "volumenNominal": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "precioPromedio": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "moneda": {
+                        "enum": [
+                            "peso_Argentino",
+                            "dolar_Estadounidense",
+                            "real",
+                            "peso_Mexicano",
+                            "peso_Chileno",
+                            "yen",
+                            "libra",
+                            "euro",
+                            "peso_Peruano",
+                            "peso_Colombiano",
+                            "peso_Uruguayo"
+                        ],
+                        "type": "string"
+                    },
+                    "precioAjuste": {
+                        "format": "double",
+                        "description": "Se Carga si es una Cotización de Futuro",
+                        "type": "number"
+                    },
+                    "interesesAbiertos": {
+                        "format": "double",
+                        "description": "Se Carga si es una Cotización de Futuro",
+                        "type": "number"
+                    },
+                    "puntas": {
+                        "description": "Todas las puntas",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/PuntasModel"
+                        }
+                    },
+                    "cantidadOperaciones": {
+                        "format": "int32",
+                        "type": "integer"
+                    },
+                    "descripcionTitulo": {
+                        "type": "string"
+                    },
+                    "plazo": {
+                        "type": "string"
+                    },
+                    "laminaMinima": {
+                        "format": "int32",
+                        "type": "integer"
+                    },
+                    "lote": {
+                        "format": "int32",
+                        "type": "integer"
+                    }
+                }
+            },
+            "TokenRequest": {
+                "required": [
+                    "grant_type"
+                ],
+                "type": "object",
+                "properties": {
+                    "username": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    },
+                    "grant_type": {
+                        "type": "string"
+                    },
+                    "refresh_token": {
+                        "type": "string"
+                    }
+                }
+            },
+            "APIToken": {
+                "type": "object",
+                "properties": {
+                    "access_token": {
+                        "type": "string"
+                    },
+                    "token_type": {
+                        "type": "string"
+                    },
+                    "expires_in": {
+                        "format": "int32",
+                        "type": "integer"
+                    },
+                    "refresh_token": {
+                        "type": "string"
+                    },
+                    ".issued": {
+                        "type": "string"
+                    },
+                    ".expires": {
+                        "type": "string"
+                    },
+                    ".refreshexpires": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
