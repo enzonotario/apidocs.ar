@@ -35,11 +35,11 @@ const sections = computed(() => {
       :key="section.tag"
       class="space-y-4"
     >
-      <h3 class="!mt-0 !mb-0 text-2xl font-semibold text-center md:text-left">
+      <h1 class="!mt-0 !mb-0 text-2xl font-semibold text-center">
         {{ section.tag }}
-      </h3>
+      </h1>
 
-      <div class="flex flex-wrap">
+      <div class="flex flex-wrap justify-center">
         <a
           v-for="site in section.sites"
           :key="site.subdomain"
